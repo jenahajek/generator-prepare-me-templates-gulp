@@ -1,0 +1,19 @@
+{
+  "name": "prepare-me-templates-gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "setup": "npm ci",
+    "dev": "gulp dev",
+    "build": "gulp build",
+    "build-watch": "gulp build:serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

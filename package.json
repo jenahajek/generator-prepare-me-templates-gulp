@@ -1,8 +1,7 @@
 {
-  "name": "generator-prepare-me-templates-gulp",
-  "version": "0.0.5-pre",
-  "description": "Prepare me scaffold for templates with Gulp.",
-  "homepage": "",
+  "name": "generator-scaffold-templates-gulp",
+  "version": "0.0.4-pre",
+  "description": "Scaffolding for templates with Gulp.",
   "author": {
     "name": "jena.hajek",
     "email": "jena.hajek@gmail.com",
@@ -32,8 +31,11 @@
     "npm": ">= 4.0.0"
   },
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.8.0",
+    "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
   "jest": {
@@ -67,11 +69,12 @@
   },
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "lint:css": "stylelint generators/app/templates/frontend-src/scss/**/*.scss !generators/app/templates/frontend-src/scss/utils/_normalize.scss !generators/app/templates/frontend-src/scss/docs/*.scss !generators/app/templates/frontend-src/scss/utils/_debug.scss || true"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jenahajek/generator-prepare-me-templates-gulp"
+    "url": "https://github.com/jenahajek/generator-scaffold-templates-gulp"
   },
   "license": "Apache-2.0"
 }

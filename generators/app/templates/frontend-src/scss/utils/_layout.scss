@@ -1,0 +1,15 @@
+// --------------------------
+// Layout
+// --------------------------
+// Layout is global - it is responsible for visual structure on every page. To
+// stay consistent it is neccessary to treat it as separate layer.
+// Layout can also be very specific project to project. First, you need to make
+// an audit, understand how it works, which variations exist and how they
+// behave. With that knowledge you then can prepare it.
+// It goes without saying, but still - don't use any magic number, fixed
+// dimensions.
+
+// Decouple components from layout, so they're as portable as possible. Levarage
+// markup - use wrappers around components and style layout through those. Of
+// course though, if the project is special and it makes more sense different
+// approach, go for it.

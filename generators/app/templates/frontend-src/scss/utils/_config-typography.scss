@@ -1,0 +1,103 @@
+// // --------------------------
+// // Typography
+// // --------------------------
+// // There should be defined only basic font features, from which all the styles
+// // are derived from, there should not be any reused variables yet. The actual
+// // text styles should be defined in typography.scss. It is done because of
+// // source order. Learn more about that
+// // from Harry: https://www.youtube.com/watch?v=1OKZOV-iLj4
+
+// // Font family mixins
+// // --------------------------
+// // it allows for progressively enhanced webfonts
+// @mixin ff-primary {
+//     font-family: 'Nunito Sans', sans-serif;
+// }
+
+// @mixin ff-secondary {
+//     font-family: 'times new roman', serif;
+
+//     .variablefonts & {
+//         font-family: 'freight-text-pro', 'georgia', serif;
+//         font-variant-numeric: lining-nums;
+//     }
+// }
+// // Example usage
+// // --------------------------
+// // .example {
+// //   @include ff-primary;
+// // }
+
+// // Font weights options
+// // --------------------------
+// // Not sure about this. It is tricky to set up and varies depending on used
+// // fonts. Don't know if it's worth the hassle.
+// $weights: (
+//     primary: (
+//         book: 400,
+//         heavy: 700,
+//     ),
+//     secondary: (
+//         book: 400,
+//         semibold: 600,
+//     ),
+// );
+
+// @function weight($family, $weight) {
+//     @return map-get(map-get($weights, $family), $weight);
+// }
+// // Example usage
+// // --------------------------
+// // .example {
+// //   font-weight: weight(primary, book);
+// // }
+
+// // --------------------------
+// // Type scale map
+// // --------------------------
+// // Define type size map and stick with it
+// $type-settings: (
+//     2: (
+//         font-size: 20px,
+//         line-height: (
+//             19/68,
+//         ),
+//     ),
+//     1: (
+//         font-size: 18px,
+//         line-height: (
+//             19/48,
+//         ),
+//     ),
+//     0: (
+//         font-size: 16px,
+//         line-height: (
+//             19/38,
+//         ),
+//     ),
+//     -1: (
+//         font-size: 15px,
+//         line-height: (
+//             19/18,
+//         ),
+//     ),
+// );
+
+// @function type-scale($level) {
+//     @return map-get(map-get($type-settings, $level), 'font-size');
+// }
+
+// @function line-height($level) {
+//     @return map-get(map-get($type-settings, $level), 'line-height');
+// }
+
+// @mixin type-setting($level) {
+//     font-size: type-scale($level);
+//     line-height: line-height($level);
+// }
+
+// // Example usage
+// // --------------------------
+// // .example {
+// //   @include type-setting(1);
+// // }

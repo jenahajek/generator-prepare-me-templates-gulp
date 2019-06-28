@@ -1,0 +1,39 @@
+// --------------------------
+// Color palette map
+// --------------------------
+// 1. set basic palette
+// 2. set (ideally via color palette) semantic variables with `color-` prefix
+//    like `color-text-muted` or `color-border` or `color-primary`
+// 3. for each property make own variable, e.g don't mix it. Don't use
+//    $color-primary for links, but make $color-link. This way you can have
+//    consistent colors AND ability to make changes with scope as needed, e.g.
+//    you can choose whether you'll change colour in general or just in given
+//    context.
+//
+// http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+
+$palettes: (
+    white: (
+        base: #fff,
+    ),
+    black: (
+        light: #222,
+        base: #111,
+        dark: #000,
+    ),
+);
+
+@function palette($palette, $tone: 'base') {
+    @return map-get(map-get($palettes, $palette), $tone);
+}
+
+// --------------------------
+// Semantic color variables
+// --------------------------
+$color-text: palette(black);
+
+// Example usage
+// --------------------------
+// .example {
+//   color: $color-text;
+// }

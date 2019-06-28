@@ -1,0 +1,50 @@
+// // --------------------------
+// // Spacing map
+// // --------------------------
+// // 1. set basic spacing/layout options in a map. There probably will be general
+// //    spacing variants, which will be seen throughout the design (I usually name
+// //    them with suffix `large` etc. There most likely be also specific layout
+// //    number, like maximum wrapper content or max-width of text column. I think
+// //    it is not worthy to trying to find some universal name for those. It
+// //    should be sufficient to put them in a map with name like `max-content`.
+// // 2. set (ideally via that map) semantic variables with prefix (e. g.
+// //    `spacing-` and/or `layout`) like `spacing-text-base` or
+// //    `spacing-text-large` or `spacing-section-horizontal`. The actual names
+// //    should be picked up depending on the given design. Make an audit first to
+// //    see where ond what is needed. Once you get this insight, it will be easier
+// //    to set good naming system.
+// // 3. for each property make own variable, don't mix them. This way you can have
+// //    consistent spacing AND ability to make changes with scope as needed, e.g.
+// //    you can choose whether you'll change spacing in general or just in given
+// //    context.
+// //
+
+// $spacing: (
+//     small: 10px,
+//     base: 20px,
+//     large: 40px,
+//     max-content: 1440px,
+//     reading-column: 680px,
+// );
+
+// @function spacing($name) {
+//     @if map-has-key($layer, $name) {
+//         @return map-get($spacings, $name);
+//     }
+
+//     @warn 'The key #{$name} is not in the map ’$spacing’';
+//     @return null;
+// }
+
+// // --------------------------
+// // Semantic color variables
+// // --------------------------
+// $spacing-text-bottom: spacing(base);
+// $layout-max-width: spacing(max-content);
+
+// // Example usage
+// // --------------------------
+// // .example {
+// //   max-width: $layout-max-width;
+// //   margin: 0 auto $spacing-text-bottom;
+// // }

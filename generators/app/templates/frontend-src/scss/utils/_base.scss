@@ -1,0 +1,40 @@
+// // --------------------------
+// // Base
+// // --------------------------
+// // Default styles for element. I'd suggest not to be overly specific, so you
+// // don't have to undo the styles later. You should make cascade work for you,
+// // not againts you. You should be only adding new styles.
+
+// // Common margin-bottom for vertical rhythm.
+// h1, h2, h3, h4, h5, h6,
+// ul, ol, dl,
+// fieldset,
+// p, a,
+// table,
+// pre,
+// svg text {
+//     margin-bottom: 0;
+//     margin-top: 0;
+//     text-rendering: optimizeLegibility;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     -moz-font-feature-settings: 'liga' on;
+//     font-weight: 400;
+// }
+
+// // Images
+// // --------------------------
+// img,
+// picture {
+//     max-width: 100%;
+//     height: auto;
+//     display: block;
+// }
+
+// // --------------------------
+// // Selection
+// // --------------------------
+// ::selection {
+//     // background: $color-primary;
+//     // color: $color-white;
+// }

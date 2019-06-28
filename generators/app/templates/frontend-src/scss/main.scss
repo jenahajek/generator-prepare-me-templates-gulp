@@ -1,33 +1,37 @@
 @charset 'UTF-8';
 
-/* ---------------------------------------------
-    SETTINGS
-    ------------------------------------------- */
+// --------------------------
+// SETTINGS
+// --------------------------
 @import 'utils/warning';
-@import 'utils/config';
-@import 'utils/config-colors';
-@import 'utils/config-typography';
 @import 'utils/config-breakpoints';
+@import 'utils/config-colors';
+@import 'utils/config-spacing';
+@import 'utils/config-typography';
+@import 'utils/config-z-index';
+@import 'utils/config-other';
 
-/* ---------------------------------------------
-    UTILITIES
-    ------------------------------------------- */
+// --------------------------
+// UTILITIES
+// --------------------------
 @import 'utils/mixins';
 
-/* ---------------------------------------------
-    BASE, GLOBALS
-    ------------------------------------------- */
+// --------------------------
+// BASE, GLOBALS
+// --------------------------
 @import 'utils/normalize';
+@import 'utils/typography';
+@import 'utils/layout';
 @import 'utils/base';
 
-/* ---------------------------------------------
-    MODULES
-    ------------------------------------------- */
+// --------------------------
+// MODULES
+// --------------------------
 // cssGlobbingBegin
 // here be components
 // cssGlobbingEnd
 
-/* ---------------------------------------------
-    SHAME, OVERRIDES
-    ------------------------------------------- */
+// --------------------------
+// SHAME, OVERRIDES
+// --------------------------
 @import 'utils/shame';

@@ -1,0 +1,59 @@
+// // --------------------------
+// // Typography
+// // --------------------------
+// // Text styles are global - shared between both pages and components. To make
+// // your life easy, prepare mixin for each text style (ideally using type config
+// // where appropriate).
+// // You can then simply use mixins anywhere. It is win-win, because it is quicker
+// // and more precise.
+// // I'd suggest to take it one step further. Update styleguide with those styles
+// // and make it possible to copy include statements with one click.
+
+// // Naming should be easy to remember, consistent and sensible. Like always,
+// // gather all text style occuerences first so you can make complete naming
+// // system, which plays nicely together.
+// // I also use `type-` prefix for those mixins.
+
+// // I also make special mixin with apt name - wysiwyg. I prepare all text styles
+// // for elements without class. Then, I can:
+// // a) make special class wysiwyg, include mixin in it and then simply add this
+// // HTML class where needed
+// // a) include this mixin directly to the component, which contains text, which
+// // should be formatted as basic text
+
+// @mixin example-type-heading-1 {
+//     @include type-setting(5);
+//     font-weight: weight(primary, heavy);
+//     font-style: normal;
+// }
+
+// @mixin example-type-caption {
+//     @include type-setting(3);
+//     color: $color-text-muted;
+//     font-weight: weight(primary, book);
+//     font-style: normal;
+// }
+
+// @mixin example-type-breadcrumbs {
+//     @include type-setting(-2);
+//     color: $color-text-muted;
+//     font-weight: weight(primary, book);
+//     letter-spacing: 0.1px;
+// }
+
+// @mixin wysiwyg {
+//     // headings
+//     h1 {
+//         @include example-type-heading-1;
+//     }
+// }
+
+// .wysiwyg {
+//     @include wysiwyg;
+// }
+
+// // Example usage
+// // --------------------------
+// // .example-type-heading-1 {
+// //   @include example-type-heading-1;
+// // }

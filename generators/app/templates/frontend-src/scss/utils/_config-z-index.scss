@@ -1,0 +1,27 @@
+// // --------------------------
+// // Z-indexes
+// // --------------------------
+// // In order to avoid z-index wars, it is good to keep track of z-indexed used
+// // and their value. It is not a silver bullet, but can help significantly.
+// //
+// // Please update documentation accordingly
+
+// $layer: (
+//     tooltip: 95,
+//     dropdown: 100,
+// );
+
+// @function layer($name) {
+//     @if map-has-key($layer, $name) {
+//         @return map-get($layer, $name);
+//     }
+
+//     @warn 'The key #{$name} is not in the map ’$layer’';
+//     @return null;
+// }
+
+// // Example usage
+// // --------------------------
+// // .example {
+// //   z-index: layer(dropdown);
+// // }

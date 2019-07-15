@@ -1,0 +1,102 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'Browser Notice' %}
+
+{% block pageTitle %}{{ name }} | Component library{% endblock %}
+{% block bodyClass %}docs-page-component-library-item{% endblock %} {# hook for docs-nav__sub styling #}
+{% block demoStyles %}{% endblock %}
+
+{% block content %}
+
+{% include "../partials/_component-documentation.twig" with {
+    "name": name,
+    "shortDescription": "Info banners with warning",
+    "notes": "Toggle dev view in side panel to view it. Or use some archaic IE browser.",
+    "tag": "",
+    "styleFile": "info-banner",
+    "design": "
+        <p>When old browser or no-js is detected, we show banner explaining the experience might be affected.</p>
+    ",
+    "implementation": {
+        "content": "Include it in top level template, so it is included in any page.
+        ",
+        "snippet": "{% include '../components/_browser-notice.twig' %}"
+    },
+    "dev": "
+    ",
+    "devFeatures": [
+        { "item": "<strong>no-js warning</strong> info message" },
+        { "item": "<strong>deprecated browser</strong> warning and offer to download better one" },
+    ],
+    "devProblems": [
+    ],
+    "devNiceToHaves": [
+    ],
+    "browserSupport": [
+        {
+            "name": "Chrome",
+            "status": "yes",
+            "version": "73"
+        },
+        {
+            "name": "Safari",
+            "status": "yes",
+            "version": "12"
+        },
+        {
+            "name": "Firefox",
+            "status": "yes",
+            "version": "58"
+        },
+        {
+            "name": "Opera",
+            "status": "yes",
+            "version": "50"
+        },
+        {
+            "name": "Edge",
+            "status": "yes",
+            "version": "15"
+        },
+        {
+            "name": "IE",
+            "status": "yes",
+            "version": "9"
+        },
+        {
+            "name": "iOS Chrome",
+            "status": "yes",
+            "version": "iOS 8"
+        },
+        {
+            "name": "iOS Safari",
+            "status": "yes",
+            "version": "iOS 11"
+        },
+        {
+            "name": "Android",
+            "status": "yes",
+            "version": "A v4.3, Chrome"
+        },
+    ],
+    "checklist": {
+        "accessibility":            "no",
+        "noJs":                     "yes",
+        "progressiveEnhancement":   "yes",
+        "hdpiSupport":              "noneed",
+        "performanceOptimization":  "noneed",
+        "responsivity":             "noneed",
+        "dataEdgeCases":            "yes"
+    },
+    "notes": ""
+} %}
+
+<div class="docs-wrapper">
+    <div class="docs-demo docs-demo--{{ name|lower|replace({' ': '-'}) }}">
+        {% include '../../components/_browser-notice.twig' %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

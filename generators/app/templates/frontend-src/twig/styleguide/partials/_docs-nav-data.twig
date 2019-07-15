@@ -1,0 +1,97 @@
+{% include '_docs-nav.twig' with {
+    'items': [
+        {
+            'navItem': 'Getting Started',
+            'alias': 'index'
+        },
+        {
+            'navItem': 'Changelog',
+        },
+        {
+            'navItem': 'Code Guidelines',
+            'submenu': [
+                {
+                    'item': 'Code guidelines',
+                    'href': 'docs-code-guidelines.html'
+                },
+                {
+                    'item': 'Development',
+                    'href': 'docs-development.html'
+                }
+            ]
+        },
+        {
+            'navItem': 'Configs',
+        },
+        {
+            'navItem': 'Design patterns',
+            'submenu': [
+                {
+                    'item': 'Colors',
+                    'href': 'docs-colors.html'
+                },
+                {
+                    'item': 'Typography',
+                    'href': 'docs-typography.html'
+                },
+                {
+                    'item': 'Layout',
+                    'href': 'docs-layout.html'
+                },
+                {
+                    'item': 'Icons',
+                    'href': 'docs-icons.html'
+                },
+                {
+                    'item': 'Forms',
+                    'href': 'docs-forms.html'
+                },
+            ]
+        },
+        {
+            'navItem': 'Component Library',
+            'submenu': [
+                {
+                    'item': 'Accordion',
+                },
+                {
+                    'item': 'Article',
+                },
+                {
+                    'item': 'Browser Notice',
+                },
+                {
+                    'item': 'Cover Picture (editable)',
+                    'href': 'cover-picture.html'
+                },
+                {
+                    'item': 'Media Object',
+                },
+            ]
+        },
+        {
+            'navItem': 'Implementation patterns',
+            'submenu': [
+                {
+                    'item': 'Custom fonts',
+                },
+            ]
+        },
+        {
+            'navItem': 'Update checklist',
+        },
+        {
+            'navItem': 'Templates',
+            'submenu': [
+                {
+                    'item': '00 Sample',
+                    'href': '00-sample.html',
+                },
+                {
+                    'item': '15 404',
+                    'disabled': 'disabled',
+                },
+            ]
+        },
+    ]
+} %}

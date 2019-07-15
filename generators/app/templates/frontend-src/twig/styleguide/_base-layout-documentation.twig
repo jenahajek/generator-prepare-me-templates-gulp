@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block pageTitle %}{% endblock %} | jenahajek.com</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include "../components/_favicon.twig" %}
+    <script src="js/vendor/modernizr.js" ></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/documentation.css">
+    {% block demoStyles %}{% endblock %}
+
+    {# <script>
+        (function(d) {
+            var config = {
+            kitId: 'uom2ist',
+            scriptTimeout: 3000,
+            async: true
+            },
+            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+    </script> #}
+
+    {# <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&amp;subset=latin-ext" rel="stylesheet"> #}
+</head>
+
+<body class="{% block bodyClass %}{% endblock %}">
+    {% include "../components/_browser-notice.twig" %}
+
+    <div class="docs-container">
+        {% include 'partials/_docs-nav-data.twig' %}
+
+        <main class="docs-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    {# hook for copying code snippets #}
+    <textarea id="clipboard-textarea"></textarea>
+
+    {# vendor libs #}
+    {# <script src="js/vendor/svgxuse.min.js"></script> #}
+
+    {# documentation scripts #}
+    <script src="js/docs/jquery-3.2.1.min.js"></script>
+    <script src="js/docs/clipboard.js"></script>
+    <script src="js/docs/prism.js"></script>
+    <script src="js/docs/docs.js"></script>
+
+    {# custom scripts #}
+    {# <script src="js/generatedByGulp.js"></script> #}
+
+    <script>
+        $(document).ready(function(){
+            $(".docs-code-example__markup-xmp").text($(".docs-code-example__markup").prop('innerHTML'));
+
+            $(".docs-code-example__styles-xmp").text($(".docs-code-example__styles").prop('innerHTML'));
+
+            $(".docs-code-example__scripts-xmp").text($(".docs-code-example__scripts").prop('innerHTML'));
+        });
+    </script>
+    <script>
+        setTimeout(function(){
+            Prism.highlightAll();
+        }, 1000);
+    </script>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% set stylesCode = "" %}
+
+<div class="docs-code-example__markup">
+{# html pattern start #}
+
+    <div class="accordion">
+        <input class="accordion__toggle " type="checkbox" checked>
+        <p class="accordion__label">Reveal random surprise image under the toggle</p>
+        <div class="accordion__panel-wrapper">
+            <div class="accordion__panel">
+
+                <img src="https://source.unsplash.com/random" alt="">
+
+            </div> <!-- panel -->
+        </div> <!-- panel__wrapper -->
+    </div> <!-- accordion -->
+
+    <div class="accordion">
+        <input class="accordion__toggle " type="checkbox" checked>
+        <div class="accordion__panel-wrapper">
+            <div class="accordion__panel">
+
+                <img src="https://images.unsplash.com/photo-1551973733-f162a7fa33ec?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1000&h=2200&fit=crop&ixid=eyJhcHBfaWQiOjF9" alt="">
+
+            </div> <!-- panel -->
+        </div> <!-- panel__wrapper -->
+        <p class="accordion__label">Too long content causes jump in transition. Reveal image above the toggle.</p>
+    </div> <!-- accordion -->
+
+    <div class="demo-container">
+        <ul>
+            <li><p>1</p></li>
+            <li><p>2</p></li>
+            <li class="accordion">
+                <input class="accordion__toggle " type="checkbox" checked>
+                <p class="accordion__label">3</p>
+                <div class="accordion__panel-wrapper">
+                    <div class="accordion__panel">
+
+                        <ul class="">
+                            <li><p>4</p></li>
+                            <li><p>5</p></li>
+                            <li><p>6</p></li>
+                            <li><p>7</p></li>
+                            <li><p>8</p></li>
+                            <li><p>9</p></li>
+                        </ul>
+
+                    </div> <!-- panel -->
+                </div> <!-- panel__wrapper -->
+            </li>
+            <li><p>10</p></li>
+        </ul>
+        <ul>
+            <li><p>1</p></li>
+            <li><p>2</p></li>
+            <li class="accordion">
+                <input class="accordion__toggle " type="checkbox" checked>
+                <p class="accordion__label">3</p>
+                <div class="accordion__panel-wrapper">
+                    <div class="accordion__panel">
+
+                        <ul class="">
+                            <li><p>4</p></li>
+                            <li><p>5</p></li>
+                            <li><p>6</p></li>
+                        </ul>
+
+                    </div> <!-- panel -->
+                </div> <!-- panel__wrapper -->
+            </li>
+            <li><p>7</p></li>
+            <li><p>8</p></li>
+            <li><p>9</p></li>
+            <li><p>10</p></li>
+        </ul>
+        <ul>
+            <li><p>1</p></li>
+            <li><p>2</p></li>
+            <li class="accordion">
+                <input class="accordion__toggle " type="checkbox" checked>
+                <p class="accordion__label">3</p>
+                <div class="accordion__panel-wrapper">
+                    <div class="accordion__panel">
+
+                        <ul>
+                            <li><p>4</p></li>
+                        </ul>
+
+                    </div> <!-- panel -->
+                </div> <!-- panel__wrapper -->
+            </li>
+            <li><p>5</p></li>
+            <li><p>6</p></li>
+            <li><p>7</p></li>
+            <li><p>8</p></li>
+            <li><p>9</p></li>
+            <li><p>10</p></li>
+        </ul>
+
+    </div> <!-- accordion -->
+
+{# html pattern end #}
+</div>
+
+<div class="docs-code-example__scripts">
+{# js pattern start #}
+
+{# js pattern end #}
+</div>

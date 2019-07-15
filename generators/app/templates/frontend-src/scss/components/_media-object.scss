@@ -1,0 +1,162 @@
+// Default configuration
+//-------------------------
+// defaults, which can be overriden when including mixin
+
+    // Class names
+    //-------------------------
+    $class-component: media-object;
+    $class-component-media-wrapper: media-object__image-wrapper;
+    $class-component-media: media-object__image;
+    $class-component-content: media-object__content;
+
+    // Sizes and spacings
+    //-------------------------
+    $media-object-image-width: 150px;
+    $media-object-image-height: 150px;
+    $media-object-gutter-horizontal: 20px; // space between image and content
+    $media-object-gutter-vertical: 20px; // space between image and content when they are stacked on top of each other
+
+    // Breakpoints
+    //-------------------------
+    // these should be integrated with other breakpoints in the project
+    // defaults, which can be overriden when including mixin
+    $breakpoint-media-object-narrow: 800px;
+    $breakpoint-media-object-wide: 1000px;
+
+
+//-------------------------
+// Mixins
+//-------------------------
+@mixin media-object(
+    $class-component: $class-component,
+    $class-component-media-wrapper: $class-component-media-wrapper,
+    $class-component-media: $class-component-media,
+    $class-component-content: $class-component-content,
+    $media-object-image-width: $media-object-image-width,
+    $media-object-image-height: $media-object-image-height,
+    $media-object-gutter-horizontal: $media-object-gutter-horizontal,
+    $media-object-gutter-vertical: $media-object-gutter-vertical,
+    $breakpoint-media-object-narrow: $breakpoint-media-object-narrow,
+    $breakpoint-media-object-wide: $breakpoint-media-object-wide){
+
+    .#{$class-component} {
+        display: flex;
+        flex-flow: row nowrap;
+
+        @media (min-width: $breakpoint-media-object-narrow) {
+            flex-flow: column nowrap;
+        }
+
+        @media (min-width: $breakpoint-media-object-wide) {
+            flex-flow: row nowrap;
+        }
+
+
+        > .#{$class-component-media-wrapper} {
+            width: $media-object-image-width;
+            height: $media-object-image-height;
+            margin-right: $media-object-gutter-horizontal;
+            overflow: hidden;
+
+            @media (min-width: $breakpoint-media-object-narrow) {
+                margin-right: 0;
+                margin-bottom: $media-object-gutter-vertical;
+            }
+
+            @media (min-width: $breakpoint-media-object-wide) {
+                flex-flow: column nowrap;
+                margin-right: $media-object-gutter-horizontal;
+                margin-bottom: 0;
+            }
+
+            .#{$class-component-media} {
+                max-width: 100%;
+            }
+        }
+
+        > .#{$class-component-content} {
+            display: flex;
+            flex-flow: column nowrap;
+            margin-top: 0;
+
+            @media (min-width: $breakpoint-media-object-wide) {
+                flex-flow: column nowrap;
+            }
+        }
+    }
+}
+
+
+
+
+
+// // Include demos
+// //-------------------------
+// @include media-object(
+//     $class-component,
+//     $class-component-media-wrapper,
+//     $class-component-media,
+//     $class-component-content,
+//     $media-object-image-width,
+//     $media-object-image-height,
+//     $media-object-gutter-horizontal,
+//     $media-object-gutter-vertical,
+//     $breakpoint-media-object-narrow,
+//     $breakpoint-media-object-wide
+// );
+@include media-object();
+
+
+// Aligned middle (vertically)
+//-------------------------
+.media-object--align-middle {
+    .media-object__content {
+        justify-content: center;
+    }
+}
+
+
+// Aligned bottom
+//-------------------------
+.media-object--align-bottom {
+    .media-object__content {
+        justify-content: flex-end;
+    }
+}
+
+
+// Reversed
+//-------------------------
+.media-object--reverse {
+    .media-object__content {
+        order: -1;
+    }
+}
+
+
+@include media-object(
+    "media-object.media-object--custom",
+    "media-object__image-wrapper",
+    "media-object__image",
+    "media-object__content",
+    100px,
+    60px,
+    40px,
+    20px,
+    666px,
+    1111px
+);
+
+
+@include media-object(
+    "media-object.media-object--smallish",
+    "media-object__image-wrapper",
+    "media-object__image",
+    "media-object__content",
+    80px,
+    80px,
+    $media-object-gutter-horizontal,
+    20px,
+    666px,
+    1111px
+);

@@ -1,0 +1,66 @@
+//-------------------------
+// General settings
+//-------------------------
+$docs-font-family-text: 'proxima nova', arial;
+$docs-font-family-headings: 'proxima nova', georgia;
+
+$docs-spacing: 20px;
+$docs-text-spacing: 30px;
+$docs-section-heading-size: 48px;
+$docs-section-subheading-size: 28px;
+$docs-reading-column: 780px;
+$docs-content-max-width: 1440px;
+
+$docs-color-border: #bbb;
+$docs-color-border-dark: #999;
+$docs-color-primary: #4444dd;
+// $docs-color-primary: $color-accent;
+
+$docs-color-tag: #e2acac;
+$docs-color-info: #5aa1f1;
+$docs-color-success: #61b926;
+$docs-color-warning: #ca852b;
+$docs-color-error: #c53030;
+$docs-color-text: #222;
+$docs-color-text-muted: #999;
+
+$docs-helper-blue: rgb(180, 212, 255);
+$docs-helper-yellow: rgb(255, 232, 130);
+$docs-helper-yellow-semi: rgba(255, 232, 130, 0.75);
+$docs-helper-green: rgb(177, 255, 142);
+$docs-helper-pink: rgb(255, 70, 116);
+$docs-helper-violet: rgb(206, 169, 255);
+$docs-helper-azure: rgb(147, 255, 223);
+
+//-------------------------
+// Navigation setting
+//-------------------------
+$docs-nav-transition: all 0.15s linear;
+$docs-nav-background: rgb(255, 255, 255);
+$docs-nav-background-alt: rgb(247, 247, 247);
+$docs-nav-link-color: #444;
+$docs-nav-border-color: rgb(226, 226, 226);
+$docs-nav-width: 380px;
+$docs-nav-horizontal-padding: 16px;
+$docs-nav-vertical-padding: 12px;
+$docs-nav-z-index: 999; // todo layer palette
+$docs-nav-shadow: 0 0 20px 0px rgba(75, 48, 48, 0.15);
+$docs-nav-font-size: 14px;
+
+$docs-nav-logo-height: 60px;
+$docs-nav-logo-width: 69px;
+$docs-nav-color-toggle-width: 26px;
+$docs-nav-color-toggle-height: 26px;
+
+//-------------------------
+// Main content settings
+//-------------------------
+$docs-gutter: 30px; // space between main content and nav
+
+//-------------------------
+// Component library
+//-------------------------
+$docs-tag-development-color: #f86b6b;
+$docs-tag-review-color: #f89b5d;
+$docs-tag-ready-color: #579e46;
+$docs-tag-production-color: #8fa5e4;

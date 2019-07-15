@@ -1,0 +1,32 @@
+// include stylesheet and add `debug` class to `body`
+
+/* Empty Elements */
+.docs-debug-view div:empty, .docs-debug-view span:empty,.docs-debug-view li:empty,.docs-debug-view p:empty,.docs-debug-view td:empty,.docs-debug-view th:empty {
+    padding: 20px;
+    border: 5px dotted yellow !important;
+}
+
+/* Empty Attributes */
+.docs-debug-view *[alt=""], .docs-debug-view *[title=""], .docs-debug-view *[class=""], .docs-debug-view *[id=""], .docs-debug-view a[href=""] {
+    border: 5px solid yellow !important;
+}
+
+/* Deprecated Elements */
+.docs-debug-view applet, .docs-debug-view basefont, .docs-debug-view center, .docs-debug-view dir, .docs-debug-view font, .docs-debug-view isindex, .docs-debug-view menu, .docs-debug-view s, .docs-debug-view strike, .docs-debug-view u {
+    border: 5px dotted red !important;
+}
+
+/* Deprecated Attributes */
+.docs-debug-view *[background], .docs-debug-view *[bgcolor], .docs-debug-view *[clear], .docs-debug-view *[color], .docs-debug-view *[compact], .docs-debug-view *[noshade], .docs-debug-view *[nowrap], .docs-debug-view *[size], .docs-debug-view *[start],.docs-debug-view *[bottommargin], .docs-debug-view *[leftmargin], .docs-debug-view *[rightmargin], .docs-debug-view *[topmargin], .docs-debug-view *[marginheight], .docs-debug-view *[marginwidth], .docs-debug-view *[alink], .docs-debug-view *[link], .docs-debug-view *[text], .docs-debug-view *[vlink],.docs-debug-view *[align], .docs-debug-view *[valign],.docs-debug-view *[hspace], .docs-debug-view *[vspace],.docs-debug-view *[height], .docs-debug-view *[width],.docs-debug-view ul[type], .docs-debug-view ol[type], .docs-debug-view li[type] {
+    border: 5px solid red !important;
+}
+
+/* Proposed Deprecated Elements */
+.docs-debug-view input[type="button"], .docs-debug-view big, .docs-debug-view tt {
+    border: 5px dotted #33FF00 !important;
+}
+
+/* Proposed Deprecated Attributes */
+.docs-debug-view *[border], .docs-debug-view table[cellpadding], .docs-debug-view table[cellspacing] {
+    border: 5px solid #33FF00 !important;
+}

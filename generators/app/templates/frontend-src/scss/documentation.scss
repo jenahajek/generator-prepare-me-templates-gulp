@@ -1,0 +1,56 @@
+@charset 'UTF-8';
+
+//-------------------------
+// Settings
+//-------------------------
+// 1: in order to use variable in demo-docs same as in actual components without duplicating them, we import components in this stylesheet, too. In order that to work, we also need these files, because components rely upon them.
+
+@import 'docs/warning';
+// add project configs, so documentation variables can be mapped on the project ones
+@import 'utils/config-breakpoints';
+@import 'utils/config-colors';
+@import 'utils/config-spacing';
+@import 'utils/config-typography';
+@import 'utils/config-z-index';
+@import 'utils/config-other';
+@import 'utils/mixins'; // 1
+
+@import 'docs/docs-config';
+
+//-------------------------
+// Utils
+//-------------------------
+@import 'docs/docs-mixins';
+// @import 'utils/typography';
+
+//-------------------------
+// Partials
+//-------------------------
+@import 'utils/normalize';
+@import 'utils/base';
+
+@import 'docs/partials/docs';
+@import 'docs/partials/docs-design-patterns';
+@import 'docs/partials/docs-component-library';
+@import 'docs/partials/docs-demo';
+
+//-------------------------
+// Components demo
+//-------------------------
+// cssGlobbingBegin
+// here be components (needed for variables)
+// cssGlobbingEnd
+
+// demoCssGlobbingBegin
+// here be demo components
+// demoCssGlobbingEnd
+
+//-------------------------
+// Documentation
+//-------------------------
+@import 'docs/prism';
+
+//-------------------------
+// Overrides
+//-------------------------
+@import 'docs/partials/docs-debug-view';

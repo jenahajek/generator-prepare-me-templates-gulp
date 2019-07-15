@@ -1,0 +1,104 @@
+{# PREFIX SAMPLE CLASSES to prevent style colidating between each other #}
+
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'xxx' %}
+
+{% block pageTitle %}{{ name }} | Component library{% endblock %}
+{% block bodyClass %}docs-page-component-library-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+{% include "../partials/_component-documentation.twig" with {
+    "name": name,
+    "tag": "development review ready production",
+    "design": "
+    <div>
+        <p>documentation in html</p>
+    </div>
+    ",
+    "implementation": {
+        "content": "
+            <p>documentation in html</p>
+        ",
+        "snippet": "
+{% include '../components/_template.twig' %}"
+    },
+    "dev": "
+        <p>documentation in html</p>
+    ",
+    "devFeatures": [
+        { "item": "feature" },
+    ],
+    "devProblems": [
+        { "item": "problem" },
+    ],
+    "devNiceToHaves": [
+        { "item": "nice to have" },
+    ],
+    "browserSupport": [
+        {
+            "name": "Chrome",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "Safari",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "Firefox",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "Opera",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "Edge",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "IE",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "iOS Chrome",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "iOS Safari",
+            "status": "-",
+            "version": "-"
+        },
+        {
+            "name": "Android",
+            "status": "-",
+            "version": "-"
+        },
+    ],
+    "checklist": {
+        "accessibility":            "",
+        "noJs":                     "",
+        "progressiveEnhancement":   "",
+        "hdpiSupport":              "",
+        "performanceOptimization":  "",
+        "responsivity":             "",
+        "dataEdgeCases":            ""
+    },
+    "notes": ""
+} %}
+
+<div class="wrapper-inner">
+    {% include '../../components/_picture-element.twig' %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

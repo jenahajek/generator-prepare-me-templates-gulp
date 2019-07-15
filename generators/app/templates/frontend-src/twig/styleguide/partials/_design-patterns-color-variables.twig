@@ -1,0 +1,34 @@
+<table class="docs-color__variables docs-table">
+    {% for category in categories %}
+        <caption class="docs-table__caption">{{ category.name }}</caption>
+        <tr>
+            <th>&nbsp;</th>
+            <th class="docs-copyable">Variable</th>
+            <th>Role</th>
+            <th>Scss value</th>
+            <th>Color codes</th>
+            <th>Notes</th>
+        </tr>
+        {% for variable in category.variables  %}
+            <tr class="docs-color__variable-item">
+                <td><div class="docs-color__sample is-{{ variable.item|lower }}">&nbsp;</div></td>
+                <td class="docs-color__variable-name js-copy-to-clipboard docs-tooltip docs-tooltip--down" data-clipboard-target="#clipboard-textarea">${{ variable.item }}</td>
+                <td>
+                    <ul>
+                    {% for role in variable.roles %}
+                        <li>{{ role.role }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ variable.value }}</td>
+                <td>
+                    <p class="docs-color__hex"></p>
+                    <p class="docs-color__rgba"></p>
+                </td>
+                <td>
+                    {{ variable.notes }}
+                </td>
+            </tr>
+            {% endfor %}
+    {% endfor %}
+</table>

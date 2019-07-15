@@ -1,0 +1,137 @@
+$breakpoint-medium: 600px;
+
+//-------------------------
+// Map setting
+//-------------------------
+    $map-max-width: 800px;
+    $map-region-fill: rgba(0, 0, 0, 0.5);
+    $map-region-stroke: rgba(153, 153, 153, 0.5);
+    $map-region-stroke-width: 1.5px;
+    $map-region-hover-fill: rgba(0, 0, 0, 0.3);
+    $map-region-transition: fill 0.3s ease-out;
+
+
+//-------------------------
+// Map
+//-------------------------
+.svg-map__wrapper {
+	display: none;
+
+	@media (min-width: $breakpoint-medium) {
+		position: relative;
+		display: block;
+		max-width: $map-max-width;
+		width: 100%;
+	}
+}
+
+// .svg-map__region {
+// 	position: relative; // asi bude mozne smazat
+// }
+
+.svg-map__region-path {
+    fill: $map-region-fill;
+    stroke: $map-region-stroke;
+    stroke-width: $map-region-stroke-width;
+    transition: $map-region-transition;
+
+    &.is-active,
+    &:hover {
+        fill: $map-region-hover-fill;
+    }
+}
+
+
+.pr-weather-map-region {
+    // todo - se ani nepouziva, mozna na JS
+}
+
+
+
+//-------------------------
+// Info labels settings
+//-------------------------
+    $map-label-color: #fff;
+    $map-label-background: rgb(255, 70, 116);
+    $map-label-padding: 10px;
+    $map-label-content-gap: 5px; // vertical gap between additional info rows
+    $map-active-label-z-index: 100; // hovered info label should be above others
+    $map-label-ico-width: 30px;
+    $map-label-ico-height: 30px;
+    $map-label-ico-color: #fff;
+    $map-label-additional-ico-width: 17px;
+    $map-label-additional-ico-height: 17px;
+    $map-label-additional-ico-color: #fff;
+
+//-------------------------
+// Info labels
+//-------------------------
+
+.svg-map__label-wrapper {
+	position: absolute;
+}
+
+// Info label positions
+//-------------------------
+.svg-map__label-wrapper--JC { left: 28%; top: 73%; }
+.svg-map__label-wrapper--JM { left: 62%; top: 73%; }
+.svg-map__label-wrapper--KA { left:  3%; top: 30%; }
+.svg-map__label-wrapper--KR { left: 53%; top: 22%; }
+.svg-map__label-wrapper--LI { left: 38%; top:  5%; }
+.svg-map__label-wrapper--MO { left: 84%; top: 44%; }
+.svg-map__label-wrapper--OL { left: 70%; top: 52%; }
+.svg-map__label-wrapper--PA { left: 55%; top: 42%; }
+.svg-map__label-wrapper--ZL { left: 80%; top: 69%; }
+.svg-map__label-wrapper--PL { left: 11%; top: 52%; }
+.svg-map__label-wrapper--PR { left: 29%; top: 34%; }
+.svg-map__label-wrapper--ST { left: 36%; top: 48%; }
+.svg-map__label-wrapper--US { left: 19%; top: 16%; }
+.svg-map__label-wrapper--VY { left: 47%; top: 60%; }
+
+.svg-map__label {
+	color: $map-label-color;
+	padding: $map-label-padding;
+	display: flex;
+	flex-flow: column nowrap;
+	position: absolute;
+	background-color: $map-label-background;
+}
+
+.svg-map__label-row {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.svg-map__label-content {
+	color: $map-label-color;
+	display: inline-block;
+}
+
+.svg-map__additional-label {
+    //
+}
+
+.svg-map__label:hover,
+.svg-map__label:focus,
+.svg-map__label-wrapper.is-active .svg-map__label {
+	z-index: $map-active-label-z-index;
+}
+
+.svg-map__label-ico {
+	display: inline-block;
+	width: $map-label-ico-width;
+	height: $map-label-ico-height;
+    fill: $map-label-ico-color;
+}
+
+.svg-map__additional-label-ico {
+	width: $map-label-additional-ico-width;
+    height: $map-label-additional-ico-height;
+    fill: $map-label-additional-ico-color;
+}
+
+.svg-map__additional-label-content {
+	display: block;
+}
+
+

@@ -1,0 +1,14 @@
+{% for color in palette %}
+    <div class="docs-color__swatch">
+        <p class="docs-color__swatch-caption">{{ color.name }}s</p>
+        {% for variation in color.variations  %}
+        <div class="docs-color {{ color.name|lower }} {{ variation.variation }} {% if variation.inverted == true %}docs-color--inverted{% endif %}">
+            <div class="docs-color__meta">
+                <p>palette({{ color.name|lower }}, {{ variation.variation }})</p>
+                <p class="docs-color__hex"></p>
+                <p class="docs-color__rgba"></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}

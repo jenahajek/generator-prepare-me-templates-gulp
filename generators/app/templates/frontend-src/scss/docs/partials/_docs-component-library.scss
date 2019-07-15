@@ -1,0 +1,290 @@
+// --------------------------
+// Component Library
+// --------------------------
+.docs-component-docs {
+    padding: ($docs-spacing * 2) 0 0;
+    font-size: 16px;
+}
+
+.docs-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: (20/16);
+    padding: 5px 10px 4px;
+    border-radius: 15px;
+    position: relative;
+    letter-spacing: -0.5px;
+    top: -4px;
+    margin-left: $docs-spacing;
+}
+
+.docs-tag--development {
+    background: $docs-tag-development-color;
+    color: darken($docs-tag-development-color, 50%);
+}
+
+.docs-tag--review {
+    background: $docs-tag-review-color;
+    color: darken($docs-tag-review-color, 50%);
+}
+
+.docs-tag--ready {
+    background: $docs-tag-ready-color;
+    color: darken($docs-tag-ready-color, 30%);
+}
+
+.docs-tag--production {
+    background: $docs-tag-production-color;
+    color: darken($docs-tag-production-color, 50%);
+}
+
+// --------------------------
+// tabs
+// --------------------------
+.docs-tabs {
+    margin-bottom: $docs-spacing;
+}
+
+.docs-tabs__wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    // padding: 0 ($docs-spacing / 2);
+    padding: 0;
+
+    flex-direction: row;
+
+    // @include respond-to(medium) {
+        // flex-direction: row;
+    // }
+}
+
+.docs-tabs__tab {
+    -webkit-appearance: none;
+    padding: ($docs-spacing / 4) ($docs-spacing / 2);
+    border: 1px solid $docs-color-border;
+    border-width: 1px 1px 0 1px;
+    margin-right: 3px;
+    margin-bottom: -1px;
+    background: #fff;
+    border-radius: 2px 2px 0 0;
+    opacity: 0.6;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.is-active {
+        border-width: 1px 1px 0 1px;
+        border-color: transparent;
+        background: #F7F7F7;
+        opacity: 1;
+    }
+}
+
+.docs-tabs__content-wrapper {
+    border-top: 1px solid #F7F7F7;
+}
+
+.docs-tabs__content {
+    padding: $docs-spacing;
+    border-radius: 2px;
+    margin-bottom: $docs-spacing;
+    display: block;
+
+    .js & {
+        display: none;
+    }
+
+    &.is-active {
+        display: block;
+        background: #F7F7F7;
+    }
+
+    .warning {
+        color: #db350b;
+        font-weight: bold;
+    }
+
+    p:last-child {
+        margin-bottom: 0;;
+    }
+
+    h6:first-child {
+        margin-top: 0;
+    }
+}
+
+ul.docs-browser-support__legend {
+    // @include transition;
+    padding: 0;
+    list-style-type: none;
+    opacity: 0.5;
+    display: flex;
+    flex-flow: row nowrap;
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+    }
+
+    li {
+        padding: 0 ($docs-spacing * 1.25);
+        position: relative;
+
+        &::before {
+            @include docs-point;
+        }
+
+        &[data-status="yes"] {
+            &::before {
+                background-color: $docs-color-success;
+            }
+        }
+
+        &[data-status="ok"] {
+            &::before {
+                background-color: $docs-helper-green;
+            }
+        }
+
+        &[data-status="partial"] {
+            &::before {
+                background-color: $docs-color-warning;
+            }
+        }
+
+        &[data-status="no"] {
+            &::before {
+                background-color: $docs-color-error;
+            }
+        }
+    }
+}
+
+.docs-browser-support {
+    margin-bottom: $docs-spacing;
+
+    tr {
+
+    }
+
+    th {
+        border: 1px solid #ddd;
+        width: (100% / 9);
+    }
+
+    td {
+        padding: ($docs-spacing / 4) ($docs-spacing / 2);
+        border: 1px solid #ddd;
+        background-color: #eee;
+        text-align: center;
+    }
+
+    .docs-browser-support__icon-cell {
+        padding: ($docs-spacing / 2);
+        line-height: 1;
+    }
+
+    .docs-browser-support__status {
+        position: relative;
+        height: 35px;
+
+        p {
+            display: none;
+        }
+
+        &::before {
+            @include docs-point;
+            left: 50%;
+            margin-left: -10px;
+        }
+
+        &[data-status="yes"] {
+            &::before {
+                background-color: $docs-color-success;
+            }
+        }
+
+        &[data-status="ok"] {
+            &::before {
+                background-color: $docs-helper-green;
+            }
+        }
+
+        &[data-status="partial"] {
+            &::before {
+                background-color: $docs-color-warning;
+            }
+        }
+
+        &[data-status="no"] {
+            &::before {
+                background-color: $docs-color-error;
+            }
+        }
+    }
+}
+
+.docs-browser-support__icon {
+    width: ($docs-spacing * 2);
+    height: ($docs-spacing * 2);
+}
+
+.docs-checklist__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+ul.docs-checklist {
+    padding-left: 0;
+    padding-right: ($docs-spacing * 4);
+    list-style-type: none;
+
+    li {
+        position: relative;
+        padding-left: ($docs-spacing * 1.5);
+
+        &::before {
+            @include docs-point;
+        }
+        &[data-status="yes"] {
+            &::before {
+                background-color: $docs-color-success;
+            }
+        }
+        &[data-status="noneed"] {
+            &::before {
+                background-color: $docs-helper-green;
+            }
+        }
+        &[data-status="partial"] {
+            &::before {
+                background-color: $docs-color-warning;
+            }
+        }
+        &[data-status="no"] {
+            &::before {
+                background-color: $docs-color-error;
+            }
+        }
+    }
+
+    &.docs-checklist--legend {
+        // @include transition;
+        opacity: 0.5;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+        }
+
+        li {
+            padding-right: 0;
+
+            &::before {
+                transform: scale(0.75);
+            }
+        }
+    }
+}

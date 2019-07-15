@@ -1,0 +1,100 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'Custom fonts' %}
+
+{% block pageTitle %}{{ name }} | Implementation patterns{% endblock %}
+{% block bodyClass %}docs-page-implementation-patterns-item{% endblock %} {# hook for docs-nav__sub styling #}
+{% block demoStyles %}
+    <style>
+        #example {
+            font-family: pulpo-rust-50;
+            display: inline-block;
+        }
+
+        .wf-loading #example {
+            visibility: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div id="example">
+    <h1>Custom font with callback</h1>
+</div>
+
+<p>Typekit ma sice loading funkci, ale ta tvrdi, ze je pismo aktivni, aniz by bylo nutne uz vyrendereovane. Pro pripady, kdy pouzivame treba JS na priority navigaci a pocitame s velikosti pisma, potrebujeme zahajit vypocty az po skutecnem vyrenderovani. A prave proto jsem dotvoril funkci, ktera sleduje zmenu velikosti. Teprve az kdyz k ni dojde, muzeme spoustet dalsi funkce.</p>
+
+<p>Je dulezite vkladat font pres obycejny script tag, s pokrocilym se to tluce. Zatim nemam vyzkousene chovani pri nacitani pres CSS.</p>
+
+<p>
+    Stavy:
+    1. vychozi
+    2. loaduje se
+    3. trva to dlouho
+    4. nahralo se
+    5. vyrenderovalo se
+</p>
+
+<p>
+    FOIT, FOUT
+</p>
+
+<p>
+    Google / Typekit / custom / ...
+</p>
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://use.typekit.com/mtw2zhm.js"></script>
+
+    <script type="text/javascript">
+        var originalLineWidth;
+        var currentLineWidth;
+
+        // reliable way how to find out custom fonts have rendered is to measure some text and keep an eye on its dimensions. Once they change, it is safe to work with it. It is used by priority navigation;
+        var sample = $(".site-header__nav-item:first-child .site-header__nav-link");
+
+        (function() {
+            $(document).ready(function() {
+                // As soon as the DOM is ready, make the example...
+                if ($(".wf-loading").length || $(".wf-inactive").length) {
+                    originalLineWidth = Math.floor(sample.outerWidth(), 2);
+                    console.log("DOM ready");
+                }
+            });
+
+
+            try {
+            Typekit.load({
+                loading: function() {
+                    //
+                },
+                active: function() {
+                    var checkFont = setInterval(checkFontTimer, 100);
+                    function checkFontTimer() {
+                        currentLineWidth = Math.floor($("#example").outerWidth(), 2);
+                        if (originalLineWidth !== currentLineWidth) {
+                            console.log("zastavuju interval");
+                            clearInterval(checkFont);
+                            alert("Font should be rendered already! At this moment it is " + currentLineWidth + "px wide."); // run what you need...
+                        }
+                    };
+                },
+                inactive: function() {
+                    var checkFont = setInterval(checkFontTimer, 100);
+                    function checkFontTimer() {
+                        currentLineWidth = Math.floor($("#example").outerWidth(), 2);
+                        if (originalLineWidth !== currentLineWidth) {
+                            clearInterval(checkFont);
+                            alert("Font should be rendered already, even though it required some patience... At this moment it is " + currentLineWidth + "px wide."); // run what you need...
+                        }
+                    };
+                }
+            })
+            } catch(e) {}
+        })();
+    </script>
+{% endblock %}

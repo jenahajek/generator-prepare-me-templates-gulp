@@ -1,0 +1,26 @@
+{% extends '_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Code Guidelines{% endblock %}
+{% block bodyClass %}docs-page-code-guidelines{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+<div class="docs-content__intro">
+    <h1 class="docs-section-heading">
+        Code Guidelines
+    </h1>
+
+    <p class="docs-perex">
+        High-level guidelines for developing this project.
+    </p>
+
+    <ol>
+        <li><strong>Code guidelines</strong> - how to write code, so it is well legible and devs can avoid unecessary diffs in git.</li>
+        <li><strong>Development</strong> - explanation of systems and procedures in use on this project.</li>
+    </ol>
+
+    <p>
+        Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+    </p>
+</div>
+
+{% endblock %}

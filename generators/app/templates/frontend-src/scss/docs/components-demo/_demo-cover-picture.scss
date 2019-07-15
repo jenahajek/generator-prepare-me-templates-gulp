@@ -1,0 +1,20 @@
+.docs-demo--cover-picture {
+
+
+    .cover-picture {
+        min-height: 500px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        pointer-events: none;
+
+        &::after {
+            content: 'Easy Life!';
+            display: block;
+            padding: 10px 20px;
+            background: $docs-helper-yellow-semi;
+        }
+    }
+}

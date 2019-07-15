@@ -11,7 +11,7 @@
     <meta content="" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
-    {% include "../components/_favicon.twig" %}
+    {% include "components/_favicon.twig" %}
 
     <script src="js/vendor/modernizr.js"></script>
     <link href="css/main.css" rel="stylesheet">
@@ -19,5 +19,13 @@
 
   <body>
     {% block content %}{% endblock %}
+
+    {# frontend templates only, don't include in production or backend #}
+    <link href="css/documentation-nav.css" rel="stylesheet">
+    <script src="js/docs/jquery-3.2.1.min.js"></script>
+    {% include 'styleguide/partials/_docs-nav-data.twig' with {
+      'navModifier': 'is-hidden has-templates',
+    } %}
+    <script src="js/docs/docs.js"></script>
   </body>
 </html>

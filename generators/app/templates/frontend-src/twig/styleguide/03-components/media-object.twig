@@ -1,0 +1,175 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'Media Object' %}
+
+{% block pageTitle %}{{ name }} | Component library{% endblock %}
+{% block bodyClass %}docs-page-component-library-item{% endblock %} {# hook for docs-nav__sub styling #}
+{% block demoStyles %}{% endblock %}
+
+{% block content %}
+
+{% include "../partials/_component-documentation.twig" with {
+    "name": name,
+    "shortDescription": "Universal Media Object",
+    "notes": "",
+    "tag": "",
+    "design": "
+        <p>documentation in html</p>
+    ",
+    "implementation": {
+        "content": '
+            <p>This is prepared like a mixin. The html structure must match this pattern (can have arbitrary classes though):</p>
+            <pre><code class="language-html">
+                &lt;div class="media-object">
+                    &lt;div class="media-object__image-wrapper">
+                        &lt;img class="media-object__image">
+                    &lt;/div>
+                    &lt;div class="media-object__content">
+                        ...
+                    &lt;/div>
+                &lt;/div>
+            </code></pre>
+            <p>
+                Then we use it by including a mixin <code>@include media-object();</code>. It is not included inside any selector, though, cause it will create its own selectors. These are, along with other parameters, in default configuration settings:
+            </p>
+            <pre><code class="language-scss">
+                // Class names
+                //-------------------------
+                $class-component: media-object;
+                $class-component-media-wrapper: media-object__image-wrapper;
+                $class-component-media: media-object__image;
+                $class-component-content: media-object__content;
+
+                // Sizes and spacings
+                //-------------------------
+                $media-object-image-width: 150px;
+                $media-object-image-height: 150px;
+                $media-object-gutter-horizontal: 20px; // space between image and content
+                $media-object-gutter-vertical: 20px; // space between image and content when they are stacked on top of each other
+
+                // Breakpoints
+                //-------------------------
+                // these should be integrated with other breakpoints in the project
+                // defaults, which can be overriden when including mixin
+                $breakpoint-media-object-narrow: 800px;
+                $breakpoint-media-object-wide: 1000px;
+            </code></pre>
+            <p>
+                All can be overriden when including mixin:
+            </p>
+            <pre><code class="language-scss">
+                // Include demos
+                //-------------------------
+                // @include media-object(
+                //     $class-component,
+                //     $class-component-media-wrapper,
+                //     $class-component-media,
+                //     $class-component-content,
+                //     $media-object-image-width,
+                //     $media-object-image-height,
+                //     $media-object-gutter-horizontal,
+                //     $media-object-gutter-vertical,
+                //     $breakpoint-media-object-narrow,
+                //     $breakpoint-media-object-wide
+                // );
+
+                @include media-object(
+                    "media-object.media-object--modifier",
+                    "media-object__image-wrapper",
+                    "media-object__image",
+                    "media-object__content",
+                    100px,
+                    60px,
+                    40px,
+                    20px,
+                    666px,
+                    1111px
+                );
+            </code></pre>
+            <p>Breakpoints should ideally be mapped to glabol ones (or, totally ideally, there would be element queries).</p>
+            <p>Resulting CSS in nested in parent class, to encapsulate it and keep media-object itself nestable inside others. Specificity is not perfect, though, keep that in mind.</p>
+
+            <h6>Other way</h6>
+            <p>Maybe the first option is overkill for given project. It is also possible to just take away the compiled code in such a case.</p>
+        ',
+        "snippet": ""
+    },
+    "dev": "",
+    "devFeatures": [
+        { "item": "Uses flexbox, can be aligned vertically and swap order of content." },
+    ],
+    "devProblems": [
+    ],
+    "devNiceToHaves": [
+        { "item": "There is only vertical alignment option yet" },
+        { "item": "Modification could be more refined and baked into the mixin" },
+    ],
+    "browserSupport": [
+        {
+            "name": "Chrome",
+            "status": "yes",
+            "version": "73"
+        },
+        {
+            "name": "Safari",
+            "status": "yes",
+            "version": "12"
+        },
+        {
+            "name": "Firefox",
+            "status": "yes",
+            "version": "58"
+        },
+        {
+            "name": "Opera",
+            "status": "yes",
+            "version": "50"
+        },
+        {
+            "name": "Edge",
+            "status": "yes",
+            "version": "15"
+        },
+        {
+            "name": "IE",
+            "status": "ok",
+            "version": "9"
+        },
+        {
+            "name": "iOS Chrome",
+            "status": "yes",
+            "version": "iOS 8"
+        },
+        {
+            "name": "iOS Safari",
+            "status": "yes",
+            "version": "iOS 11"
+        },
+        {
+            "name": "Android",
+            "status": "yes",
+            "version": "A v4.3, Chrome"
+        },
+    ],
+    "checklist": {
+        "accessibility":            "no",
+        "noJs":                     "yes",
+        "progressiveEnhancement":   "noneed",
+        "hdpiSupport":              "no",
+        "performanceOptimization":  "noneed",
+        "responsivity":             "noneed",
+        "dataEdgeCases":            "partial",
+        "mobileFirst":              "yes"
+    },
+    "notes": ""
+} %}
+
+<div class="docs-wrapper">
+    <div class="docs-demo docs-demo--{{ name|lower|replace({' ': '-'}) }}">
+        {% include '../../components/_media-object.twig' %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

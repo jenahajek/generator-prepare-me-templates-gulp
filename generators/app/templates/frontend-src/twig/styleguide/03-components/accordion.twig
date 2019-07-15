@@ -1,0 +1,105 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'Accordion' %}
+
+{% block pageTitle %}{{ name }} | Component library{% endblock %}
+{% block bodyClass %}docs-page-component-library-item{% endblock %} {# hook for docs-nav__sub styling #}
+{% block demoStyles %}{% endblock %}
+
+{% block content %}
+
+{% include "../partials/_component-documentation.twig" with {
+    "name": name,
+    "shortDescription": "Accordion with better reveal content transition",
+    "notes": "",
+    "tag": "",
+    "design": "
+        <p>documentation in html</p>
+    ",
+    "implementation": {
+        "content": "
+            <p>Make a component with included snippets and then include it with some data.</p>
+        ",
+        "snippet": ""
+    },
+    "dev": "
+        <p><mark>Collapsible content has minimal height</mark> - <code>$collapsible-content-min-height</code>. If it is smaller, container will grow to much, before suddenly dropping to actual height. It can be seen in last demo column. Also, <mark>transition has set maximum height</mark> - <code>$collapsible-content-max-height</code>. If the content exceedes this limit, transition will be ”jumpy”.</p>
+        <p><a href='https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css'>Stack Overflow explanation</a></p>
+    ",
+    "devFeatures": [
+        { "item": "<strong>smooth height change</strong>, managed with transitioning pseudo element's height and item's negative margin-bottom." },
+        { "item": "<strong>CSS only</strong>, it uses checkbox hack" },
+        { "item": "<strong>Open to both directions</strong>. It can be opened above or below the toggle, depending on source code order." },
+    ],
+    "devProblems": [
+    ],
+    "devNiceToHaves": [
+    ],
+    "browserSupport": [
+        {
+            "name": "Chrome",
+            "status": "yes",
+            "version": "73"
+        },
+        {
+            "name": "Safari",
+            "status": "yes",
+            "version": "12"
+        },
+        {
+            "name": "Firefox",
+            "status": "yes",
+            "version": "58"
+        },
+        {
+            "name": "Opera",
+            "status": "yes",
+            "version": "50"
+        },
+        {
+            "name": "Edge",
+            "status": "yes",
+            "version": "15"
+        },
+        {
+            "name": "IE",
+            "status": "ok",
+            "version": "9"
+        },
+        {
+            "name": "iOS Chrome",
+            "status": "yes",
+            "version": "iOS 8"
+        },
+        {
+            "name": "iOS Safari",
+            "status": "yes",
+            "version": "iOS 11"
+        },
+        {
+            "name": "Android",
+            "status": "yes",
+            "version": "A v4.3, Chrome"
+        },
+    ],
+    "checklist": {
+        "accessibility":            "no",
+        "noJs":                     "yes",
+        "progressiveEnhancement":   "yes",
+        "hdpiSupport":              "noneed",
+        "performanceOptimization":  "noneed",
+        "responsivity":             "noneed",
+        "dataEdgeCases":            "partial"
+    },
+    "notes": "In IE9 it opens without transition, otherwise it is working pretty much everywhere."
+} %}
+
+<div class="docs-wrapper">
+    <div class="docs-demo docs-demo--{{ name|lower|replace({' ': '-'}) }}">
+        {% include '../../components/_accordion.twig' %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

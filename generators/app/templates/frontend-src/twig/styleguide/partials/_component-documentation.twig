@@ -1,0 +1,201 @@
+{% import _self as stylesCode %}
+{% macro pattern(scssFile) %}
+    {% if scssFile %}
+        {% include '../../../scss/components/_' ~ scssFile ~ '.scss' %}
+    {% endif %}
+{% endmacro %}
+
+<div class="docs-wrapper">
+    {% if name is not empty %}
+        <h3 class="docs-section-subheading">
+            {{ name }}
+            {% if tag is not empty %}
+                <span class="docs-tag docs-tag--{{ tag }}">
+                    {{ tag }}
+                </span>
+            {% endif %}
+            {% if shortDescription is not empty %}
+                <span class="docs-section-subheading__description">
+                    {{ shortDescription }}
+                </span>
+            {% endif %}
+        </h3>
+    {% endif %}
+    {% if notes is not empty %}
+        <p class="docs-section-subheading__notes">
+            {{ notes }}
+        </p>
+    {% endif %}
+
+    <div class="docs-tabs js-docs-tabs">
+        <div class="docs-tabs__wrapper">
+            {% if design is not empty %}
+                <button class="docs-tabs__tab" data-tab="1">Design guidelines</button>
+            {% endif %}
+
+            {% if implementation is not empty %}
+                <button class="docs-tabs__tab" data-tab="2">Implementation options</button>
+            {% endif %}
+
+            {% if dev or devFeatures or browserSupport is not empty %}
+                <button class="docs-tabs__tab" data-tab="3">Developer notes</button>
+            {% endif %}
+
+                <button class="docs-tabs__tab" data-tab="4">Code snippet</button>
+        </div>
+
+        <div class="docs-tabs__content-wrapper docs-wysiwyg">
+            <section class="docs-tabs__content" data-content="1">
+                {{ design }}
+            </section>
+
+            <section class="docs-tabs__content" data-content="2">
+                {{ implementation.content }}
+                {% if implementation.snippet is not empty %}
+                    <pre><code class="language-twig">{{ implementation.snippet }}</code></pre>
+                {% endif %}
+            </section>
+
+            <section class="docs-tabs__content" data-content="3">
+                {{ dev }}
+
+                {% if dev is not empty %}
+                    {% if devFeatures or devProblems or devNiceToHaves is not empty %}
+                        <hr>
+                    {% endif %}
+                {% endif %}
+
+                {% if devFeatures is not empty %}
+                    <h6>Features</h6>
+                    <ul>
+                        {% for item in devFeatures %}
+                            <li>{{ item.item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if devProblems is not empty %}
+                    <h6>Problems</h6>
+                    <ul>
+                        {% for item in devProblems %}
+                            <li>{{ item.item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if devNiceToHaves is not empty %}
+                    <h6>Nice to have</h6>
+                    <ul>
+                        {% for item in devNiceToHaves %}
+                            <li>{{ item.item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if browserSupport is defined %}
+
+                    <ul class="docs-browser-support__legend">
+                        <li data-status="yes">yes</li>
+                        <li data-status="ok">ok (not 100%, but good)</li>
+                        <li data-status="partial">partial</li>
+                        <li data-status="no">no</li>
+                        <li data-status="">not specified</li>
+                    </ul>
+
+                    <table class="docs-browser-support">
+                        <tr>
+                            {% for item in browserSupport %}
+                                <th class="docs-browser-support__name-{{ item.name }}">{{ item.name }}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for item in browserSupport %}
+                                <td class="docs-browser-support__icon-cell">
+                                    <svg class="docs-browser-support__icon">
+                                        <use xlink:href="/svg/svgSpriteDocs.svg#browser-{{ item.name|lower|replace({' ': "-"}) }}" />
+                                    </svg>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for item in browserSupport %}
+                                <td class="docs-browser-support__status" data-status="{{ item.status }}"><p>{{ item.status }}</p></td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for item in browserSupport %}
+                                <td class="docs-browser-support__version-{{ item.version }}">{{ item.version }}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                {% endif %}
+
+                {% if notes is not empty %}
+                    <h6>Notes</h6>
+                    <p>{{ notes }}</p>
+                {% endif %}
+
+                {% if checklist is not empty %}
+                    <h6>Component checklist</h6>
+                    <div class="docs-checklist__wrapper">
+                        <ul class="docs-checklist">
+                            {% if checklist.accessibility is defined %}
+                                <li data-status="{{ checklist.accessibility }}">Accessibility</li>
+                            {% endif %}
+                            {% if checklist.noJs is defined %}
+                                <li data-status="{{ checklist.noJs }}">No-js</li>
+                            {% endif %}
+                            {% if checklist.progressiveEnhancement is defined %}
+                                <li data-status="{{ checklist.progressiveEnhancement }}">Progressive enhancement</li>
+                            {% endif %}
+                            {% if checklist.hdpiSupport is defined %}
+                                <li data-status="{{ checklist.hdpiSupport }}">HDPi support</li>
+                            {% endif %}
+                            {% if checklist.performanceOptimization is defined %}
+                                <li data-status="{{ checklist.performanceOptimization }}">Performance optimization</li>
+                            {% endif %}
+                            {% if checklist.responsivity is defined %}
+                                <li data-status="{{ checklist.responsivity }}">Responsivity</li>
+                                {% if checklist.mobileFirst is defined %}
+                                    <li data-status="{{ checklist.mobileFirst }}">Mobile first</li>
+                                {% endif %}
+                            {% endif %}
+                            {% if checklist.dataEdgeCases is defined %}
+                                <li data-status="{{ checklist.dataEdgeCases }}">Covers edge cases</li>
+                            {% endif %}
+                        </ul>
+                        <ul class="docs-checklist docs-checklist--legend">
+                            <li data-status="yes">yes</li>
+                            <li data-status="noneed">noneed</li>
+                            <li data-status="partial">partial</li>
+                            <li data-status="no">no</li>
+                            <li data-status="">not specified</li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </section>
+            <section class="docs-tabs__content" data-content="4">
+                Markup
+                    <pre>
+                        <code class="language-html docs-code-example__markup-xmp"></code>
+                    </pre>
+
+
+                {% if styleFile == 'none' %}
+                {% else %}
+                    Styles
+                    <pre>
+                        <code class="language-scss">
+                            {{ (stylesCode.pattern(styleFile|default(name|lower|replace({' ': '-'}))|replace({'<': '&lt;'}))) }}
+                        </code>
+                    </pre>
+                {% endif %}
+
+                Javascript
+                    <pre>
+                        <code class="language-js docs-code-example__scripts-xmp"></code>
+                    </pre>
+            </section>
+        </div>
+    </div>
+</div>

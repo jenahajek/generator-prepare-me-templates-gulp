@@ -1,0 +1,31 @@
+{% extends '_base-layout-documentation.twig' %}
+{% block pageTitle %}Frontend kodér{% endblock %}
+{% block bodyClass %}docs-page-index{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+<div class="docs-content__intro">
+    <h1 class="docs-section-heading">
+        Getting started
+    </h1>
+
+    <p class="docs-perex docs-todo">
+        Vysvětlení jak styleguide funguje, co obsahuje, jak je dělen a jak ho
+        používat a udržovat.
+    </p>
+
+    <p>
+        <ul>
+            <li>Changelog - seznam úprav</li>
+            <li>Code Guidelines - zásady kódování</li>
+            <li>Configs, snippets - pomocné nastavení</li>
+            <li>Design Patterns - globální styly, systém</li>
+            <li>Component Library - seznam komponent s dokumentací</li>
+            <li>Implementation Patterns - popis implementace netriviálních věcí
+            (načítání fontů nebo použití modálu)</li>
+            <li>Templates - výstupní šablony</li>
+        </ul>
+    </p>
+</div>
+
+{% endblock %}

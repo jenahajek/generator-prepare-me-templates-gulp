@@ -1,0 +1,102 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'Cover Picture' %}
+
+{% block pageTitle %}{{ name }} | Component library{% endblock %}
+{% block bodyClass %}docs-page-component-library-item{% endblock %} {# hook for docs-nav__sub styling #}
+{% block demoStyles %}{% endblock %}
+
+{% block content %}
+
+{% include "../partials/_component-documentation.twig" with {
+    "name": name,
+    "shortDescription": "Cover background done with picture element. It is responsive and editable from CMS.",
+    "notes": "",
+    "tag": "",
+    "design": "
+        <p>documentation in html</p>
+    ",
+    "implementation": {
+        "content": '',
+        "snippet": ""
+    },
+    "dev": "",
+    "devFeatures": [
+        { "item": "Responsive background cover - loads proper image with proper aspect ratio" },
+        { "item": "Editable from CMS" },
+        { "item": "Image scales with the content, excess gets cropped, it is centered" },
+    ],
+    "devProblems": [
+    ],
+    "devNiceToHaves": [
+        { "item": "Retina density images support" },
+    ],
+    "browserSupport": [
+        {
+            "name": "Chrome",
+            "status": "yes",
+            "version": "73"
+        },
+        {
+            "name": "Safari",
+            "status": "yes",
+            "version": "12"
+        },
+        {
+            "name": "Firefox",
+            "status": "yes",
+            "version": "58"
+        },
+        {
+            "name": "Opera",
+            "status": "yes",
+            "version": "50"
+        },
+        {
+            "name": "Edge",
+            "status": "yes",
+            "version": "15"
+        },
+        {
+            "name": "IE",
+            "status": "ok",
+            "version": "9"
+        },
+        {
+            "name": "iOS Chrome",
+            "status": "yes",
+            "version": "iOS 8"
+        },
+        {
+            "name": "iOS Safari",
+            "status": "yes",
+            "version": "iOS 11"
+        },
+        {
+            "name": "Android",
+            "status": "yes",
+            "version": "A v4.3, Chrome"
+        },
+    ],
+    "checklist": {
+        "accessibility":            "",
+        "noJs":                     "yes",
+        "progressiveEnhancement":   "yes",
+        "hdpiSupport":              "no",
+        "performanceOptimization":  "yes",
+        "responsivity":             "yes",
+        "dataEdgeCases":            "yes",
+        "mobileFirst":              "yes"
+    },
+    "notes": "requires modernizr (objectfit)"
+} %}
+
+<div class="docs-wrapper">
+    <div class="docs-demo docs-demo--{{ name|lower|replace({' ': '-'}) }}">
+        {% include '../../components/_cover-picture.twig' %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

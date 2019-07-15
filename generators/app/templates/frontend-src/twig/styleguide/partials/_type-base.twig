@@ -1,0 +1,30 @@
+<h2 class="docs-section-subheading">Type base</h2>
+
+<table class="docs-table">
+    <caption class="docs-table__caption">{{ category.name }}</caption>
+    <tr>
+        <th>Mixin name</th>
+        {# <th>Role</th> #}
+        <th>Declaration</th>
+        {# <th class="docs-copyable">Mixin</th> #}
+        <th>Weight</th>
+        <th>Style</th>
+        <th>Sample</th>
+    </tr>
+    {% for typeFace in typeFaces %}
+        <tr class="docs-type-base__item">
+            <td class="docs-type-base__title">
+                @include ff-{{ typeFace.name }};
+            </td>
+            <td>{{ typeFace.declaration }}</td>
+            <td>{{ typeFace.weight }}</td>
+            <td>{{ typeFace.style }}</td>
+            <td colspan="3"  class="docs-type-base__typeface docs-type-base__typeface--{{ typeFace.name }} docs-type-base__typeface--{{ typeFace.weight }} docs-type-base__typeface--{{ typeFace.style }}">
+                <p>{{ uppercase }}</p>
+                <p>{{ lowercase }}</p>
+                <p>{{ numbers }}</p>
+                <p>{{ specialChars }}</p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

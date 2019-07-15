@@ -1,0 +1,707 @@
+// ! Temporary
+// ! delete
+@mixin gradientOverlay {
+    background: linear-gradient(to right, #11B1B5, #1B5868);
+} // @todo: check: design says #1A5B6A – #11B1B5 – #29BD82, but I've changed it to use colours from project palette
+
+@mixin gradientClip {
+    .backgroundcliptext & {
+        -webkit-text-fill-color: transparent;
+        @include gradientOverlay;
+          -webkit-background-clip: text;
+        background-clip: text;
+
+        &:selection {
+            color: palette(white);
+            background-clip: none;
+        }
+    }
+}
+
+//-------------------------
+// Grid rulers
+//-------------------------
+.docs-grid-rulers {
+    position: relative;
+    clear: both;
+
+    $max-width: 1440px;
+    $grid-max-width: 1440px;
+    $grid-margin: 10px; // 20px grid-margin - 10px grid__cell padding
+    $gutter-size: 20px;
+    $column-size: ((($grid-max-width - (2 * $grid-margin)) / 12) - $gutter-size);
+
+    // sloupecky gridu
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        max-width: ($max-width - ($grid-margin * 2));
+        margin: 0 auto;
+        z-index: 10000;
+        opacity: 0.05;
+        pointer-events: none;
+
+        left: $grid-margin;
+        right: $grid-margin;
+        background:
+                repeating-linear-gradient(90deg,
+                    transparent 0%,
+                    transparent ((100% / ($grid-max-width - ($grid-margin * 2))) *  ($gutter-size / 2)), // initial gutter 0.70423%
+                    #ad0000   ((100% / ($grid-max-width - ($grid-margin * 2))) *  ($gutter-size / 2)),
+                    #ad0000   ((100% / ($grid-max-width - ($grid-margin * 2))) * (($gutter-size / 2) + $column-size)), // column 7.62911%
+                    transparent ((100% / ($grid-max-width - ($grid-margin * 2))) * (($gutter-size / 2) + $column-size)),
+                    transparent ((100% / ($grid-max-width - ($grid-margin * 2))) * (($gutter-size)     + $column-size)) // space between: 8.333330986%
+                ) 50% no-repeat;
+        background-position: left top;
+
+        // @include respond-to(large) {
+        //     left: 30px;
+        //     right: 30px;
+        // }
+    }
+}
+ // !delete ^^^
+
+//-------------------------
+// Navigation
+//-------------------------
+.docs-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+
+    // presentational styles
+    font-family: $docs-font-family-text;
+    font-size: $docs-nav-font-size;
+    transition: $docs-nav-transition;
+    background: $docs-nav-background;
+    width: $docs-nav-width;
+    z-index: $docs-nav-z-index;
+    box-shadow: $docs-nav-shadow;
+    color: $docs-nav-link-color;
+
+    .docs-page-component-library-item &,
+    .docs-page-design-patterns-item &,
+    .docs-page-templates-item &,
+    &.is-hidden {
+        transform: translateX(-97%);
+        opacity: 0;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+
+
+
+
+// Logo
+//-------------------------
+.docs-nav__logo-container {
+    padding: ($docs-nav-vertical-padding * 2) ($docs-nav-horizontal-padding);
+    border-bottom: 1px solid $docs-nav-border-color;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    text-decoration: none;
+}
+
+.docs-nav__logo {
+    display: block;
+    max-width: 100%;
+    margin-right: 15px;
+    height: $docs-nav-logo-height;
+    width: $docs-nav-logo-width;
+
+    svg {
+        max-width: 100%;
+        max-height: 100%;
+        fill: url(#icon-gradient) #11b1b5; // !delete
+
+        #eye-whole {
+            fill: #fff;
+            transform-origin: 100% 680px;
+        }
+        .docs-nav__logo-container:hover & {
+            #eye {
+                animation: look 3s ease-in 1s infinite reverse both running;
+            }
+
+            #eye-whole {
+                animation: mrk 3.5s ease-in 2s infinite reverse both running;
+            }
+        }
+        #pupil {
+            fill: #fff;
+        }
+    }
+}
+
+@keyframes look {
+    0% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateX(-50px);
+    }
+    66% {
+        transform: translateX(50px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+  }
+
+@keyframes mrk {
+    80% {
+        transform: scaleY(1);
+    }
+    85% {
+        transform: scaleY(0.5);
+    }
+    90% {
+        transform: scaleY(1);
+    }
+}
+
+.docs-nav__logo-text {
+    color: $color-text;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+    @include gradientClip; // !delete
+    margin-bottom: -5px;
+}
+
+
+
+
+// Toggles
+//-------------------------
+.docs-nav__toggle-section {
+    padding: ($docs-nav-vertical-padding / 1.5) ($docs-nav-horizontal-padding);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0.4;
+    cursor: no-drop;
+    background: $docs-nav-background-alt;
+
+    // Progressive enhancement
+    .js & {
+        opacity: 1;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+}
+
+.docs-nav__toggle-section-label {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+    }
+}
+
+.docs-nav__toggle-checkbox {
+    @include docs-vishid;
+}
+
+$docs-nav-toggle-radius: 4px;
+
+.docs-nav__toggle {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1;
+    border-radius: $docs-nav-toggle-radius;
+    padding: 0.8rem 1rem; // todo variable
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); // todo variable
+    font-size: 1rem; // todo variable
+    min-height: 48px; // todo variable
+    position: relative;
+    margin: 0;
+    -webkit-appearance: inherit;
+
+    span {
+        font-size: 0;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none;
+        text-decoration: underline;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); // todo variable
+    }
+
+    &[data-action='aria-switch'] {
+        background: #f4f4f4; // todo variable
+        display: inline-block;
+        position: relative;
+        transition: background 0.1s ease-in-out; // todo variable
+        border: 0;
+        width: 75px; // todo variable
+        min-height: 34px; // todo variable
+        overflow: hidden;
+        clear: both;
+        float: left;
+
+        &:hover {
+            background-color: #f4f4f4; // todo variable
+        }
+
+        span {
+            border-radius: 4px; // todo variable
+            display: inline-block;
+            font-weight: bold;
+            pointer-events: none;
+            text-transform: uppercase;
+            position: absolute;
+        }
+
+        &[aria-checked='true'] {
+            background: #31ad31; // todo variable
+
+            span {
+                background: #ffffff; // todo variable
+                border: 1px solid #dddddd; // todo variable
+                // border-radius: 50%;
+                height: 30px; // todo variable
+                width: 30px; // todo variable
+                top: 2px;
+                left: 42px; // todo variable
+                transition: 0.4s;
+            }
+        }
+
+        &[aria-checked='false'] span {
+            background: #ffffff; // todo variable
+            border: 1px solid #dddddd; // todo variable
+            border-radius: 4px;
+            height: 30px; // todo variable
+            width: 30px; // todo variable
+            top: 2px;
+            left: 2px;
+            transition: 0.4s;
+
+            &::after {
+                content: 'OFF';
+                display: block;
+                color: #464646; // todo variable
+                position: absolute;
+                right: -35px; // todo variable
+                top: 9px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+
+
+
+
+// Color toggles
+//-------------------------
+.docs-nav__color-toggle {
+    border: 2px solid $docs-color-border;
+    display: inline-block;
+    width: $docs-nav-color-toggle-width;
+    height: $docs-nav-color-toggle-height;
+
+    span {
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        padding: 0;
+        margin: -1px;
+        border: 0;
+        clip: rect(0 0 0 0);
+    }
+}
+
+.docs-nav__color-toggles {
+    //
+}
+
+.docs-nav__color-toggle {
+    border-radius: 4px;
+    margin: 4px 0;
+}
+
+// TODO - variables somehow
+.docs-nav__color-toggle[data-color="white"] {
+    background: #fff;
+}
+
+.docs-nav__color-toggle[data-color="black"] {
+    background: #000;
+}
+
+.docs-nav__color-toggle[data-color="default"] {
+    background: #F4F6F8;
+}
+
+
+
+
+
+// Nav links
+//-------------------------
+.docs-nav__main {
+    padding-left: 0;
+    list-style-type: none;
+    padding-bottom: 66vh; // enable scroll past end
+    margin-top: 0;
+
+    a {
+        // @include docs-link-basic;
+        text-decoration: none;
+        color: $docs-nav-link-color;
+    }
+}
+
+.docs-nav__main-item {
+    border: solid $docs-nav-border-color;
+    border-width: 1px 0 0;
+
+    &:last-child {
+        border-width: 1px 0;
+    }
+}
+
+.docs-nav__main-link {
+    display: block;
+    padding: $docs-nav-vertical-padding ($docs-nav-horizontal-padding);
+
+    &:hover,
+    &:focus {
+        background: #fafafa; // todo variable
+    }
+
+
+    &.is-disabled {
+        color: #ccc; // todo variable
+        pointer-events: none;
+    }
+
+    // otevrene submenu
+    @include docs-nav-style {
+        font-weight: bold;
+    }
+}
+
+.docs-nav__sub {
+    @include docs-custom-ol;
+    padding-bottom: ($docs-nav-vertical-padding / 2 * 3);
+    display: none;
+
+    // otevrene submenu
+    @include docs-nav-style {
+        display: block;
+    }
+}
+
+.docs-nav__sub-link {
+    transition: all 0.3s cubic-bezier(0.31, 0.94, 0.58, 1); // todo variable
+    display: block;
+    padding: ($docs-nav-vertical-padding / 3 * 2) ($docs-nav-horizontal-padding) ($docs-nav-vertical-padding / 3 * 2) ($docs-nav-horizontal-padding * 2);
+
+    &.is-active {
+        font-weight: bold;
+    }
+
+    &:hover,
+    &:focus {
+        padding-left: ($docs-nav-horizontal-padding * 2.5);
+        background: #fafafa; // todo variable
+    }
+
+    .docs-nav__sub-item.is-disabled & {
+        color: #ccc; // todo variable
+        pointer-events: none;
+    }
+}
+
+
+.docs-nav__subsub {
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.docs-nav__subsub-link {
+    transition: all 0.3s cubic-bezier(0.31, 0.94, 0.58, 1); // todo variable
+    display: block;
+    padding: ($docs-nav-vertical-padding / 3 * 2) ($docs-nav-horizontal-padding) ($docs-nav-vertical-padding / 3 * 2) ($docs-nav-horizontal-padding * 3);
+
+    &.is-active {
+        font-weight: bold;
+    }
+
+    &:hover,
+    &:focus {
+        padding-left: ($docs-nav-horizontal-padding * 3.5);
+        background: #fafafa; // todo variable
+    }
+
+    .docs-nav__subsub-item.is-disabled & {
+        color: #ccc; // todo variable
+        pointer-events: none;
+    }
+}
+
+
+.docs-nav__subsubsub {
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.docs-nav__subsubsub-link {
+    transition: all 0.3s cubic-bezier(0.31, 0.94, 0.58, 1); // todo variable
+    display: block;
+    padding: ($docs-nav-vertical-padding / 3 * 2) ($docs-nav-horizontal-padding) ($docs-nav-vertical-padding / 3 * 2) ($docs-nav-horizontal-padding * 5);
+
+    &.is-active {
+        font-weight: bold;
+    }
+
+    &:hover,
+    &:focus {
+        padding-left: ($docs-nav-horizontal-padding * 5.5);
+        background: #fafafa; // todo variable
+    }
+
+    .docs-nav__subsubsub-item.is-disabled & {
+        color: #ccc; // todo variable
+        pointer-events: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//-------------------------
+// Docs main content
+//-------------------------
+.docs-wrapper {
+    max-width: $docs-content-max-width;
+    padding: 0 $docs-spacing;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.docs-content {
+    padding-left: ($docs-nav-width + $docs-gutter);
+    padding-bottom: ($docs-spacing * 3);
+    font-family: $docs-font-family-text;
+
+    .docs-page-templates-item &,
+    .docs-page-design-patterns-item &,
+    .docs-page-component-library-item & {
+        padding-left: $docs-gutter;
+        padding-left: 0;
+    }
+
+    .docs-section-divider {
+        margin: 40px auto;
+        opacity: 0.25;
+        max-width: 1400px;
+    }
+}
+
+.docs-section-heading {
+    padding: ($docs-nav-vertical-padding * 2) $docs-gutter;
+    line-height: $docs-nav-logo-height;
+    border-bottom: 1px solid $docs-nav-border-color;
+    margin: 0 0 $docs-text-spacing ($docs-gutter * -1);
+    font-size: $docs-section-heading-size;
+    font-family: $docs-font-family-headings;
+}
+
+.docs-section-subheading {
+    padding: 0 $docs-gutter;
+    // line-height: $logo-height;
+    // border-bottom: 1px solid $border-color;
+    margin: ($docs-text-spacing * 2) 0 $docs-text-spacing ($docs-gutter * -1);
+    font-family: $docs-font-family-headings;
+    font-size: $docs-section-subheading-size;
+    font-weight: bold;
+}
+
+.docs-section-subheading__description {
+    font-weight: 100;
+    font-size: 18px;
+    display: block;
+    color: $docs-color-text-muted;
+}
+
+.docs-section-subheading__notes,
+.docs-perex {
+    @include docs-perex;
+}
+
+.docs-todo {
+    background: $docs-helper-blue;
+    font-style: italic;
+    padding: 10px;
+    opacity: 0.7;
+    border-radius: 4px;
+
+    &::after {
+        content: 'TODO';
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 12px;
+    }
+}
+
+.docs-wysiwyg {
+    @include docs-text-styles;
+    max-width: $docs-reading-column;
+
+    p {
+        margin-bottom: $docs-spacing;
+        line-height: 1.35;
+    }
+}
+
+
+
+
+
+//-------------------------
+// Copy
+//-------------------------
+#clipboard-textarea {
+    @include docs-vishid;
+}
+
+.js-copy-to-clipboard {
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        text-decoration: underline;
+
+        .documentation-tabs__content & {
+            text-decoration: none;
+            background: rgba(200, 200, 200, 0.2);
+        }
+    }
+}
+
+.docs-copyable {
+    position: relative;
+
+    &::after {
+        content: "copy";
+        display: inline-block;
+        @include docs-transition;
+        top: 0;
+        right: 0;
+        margin-left: 5px;
+        padding: 3px 5px;
+        position: relative;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1000000;
+        font: normal normal 11px/1.5 Helvetica,arial,nimbussansl,liberationsans,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: none;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: break-word;
+        white-space: pre;
+        color: rgba(0,0,0,.8);
+        border-radius: 3px;
+        -webkit-font-smoothing: subpixel-antialiased;
+        transform: translateX(0);
+    }
+}
+
+
+//-------------------------
+// Tooltip
+//-------------------------
+.docs-tooltip { // todo variables
+    position: relative;
+
+    &.is-visible {
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    &::after {
+        @include docs-transition;
+        content: "Copied!";
+        display: inline-block;
+        transition-property: opacity;
+        padding: 3px 5px;
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1000000;
+        font-size: 11px;
+        line-height: 1.5;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: none;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: break-word;
+        white-space: pre;
+        background: rgba(0,0,0,.8);
+        border-radius: 3px;
+        -webkit-font-smoothing: subpixel-antialiased;
+        transform: translateX(50%);
+    }
+}
+
+.docs-tooltip--down::after {
+    top: 0;
+    right: 0;
+    transform: translateX(-50%);
+    margin-top: 5px;
+}
+
+
+.docs-demo__heading__wrapper {
+    position: relative;
+    margin-top: ($docs-spacing * 2);
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.docs-demo__heading {
+    // @include docs-caption;
+    @include table-caption;
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,0 +1,23 @@
+{% extends '_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Checklists{% endblock %}
+{% block bodyClass %}docs-page-update-checklist{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+<div class="docs-content__intro">
+    <h1 class="docs-section-heading">
+        Update Checklist
+    </h1>
+    <p class="docs-perex docs-todo">
+        Seznam bodů, které by se měly zkontrolovat poté, co se v projektu udělá
+        změna. Např.
+    </p>
+    <ul>
+        <li>Otestováno napříč prohlížeči</li>
+        <li>Funguje bez js</li>
+        <li>Zdokomentovány všechny stavy</li>
+        <li>&hellip;</li>
+    </ul>
+</div>
+
+{% endblock %}

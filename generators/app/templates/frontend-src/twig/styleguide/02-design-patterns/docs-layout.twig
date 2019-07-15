@@ -1,0 +1,51 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Layout - Design Patterns{% endblock %}
+{% block bodyClass %}docs-page-design-patterns-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+{% include '../partials/_design-patterns-header.twig' with {
+    "heading": "Layout and vertical rhythm",
+    "perex": "<p>Understand grid given by designer and use it as much as possible. Don't be afraid of exceptions, if they're appropriate.</p><p><strong>Tip:</strong> toggle grid and padding rulers with controls in the sidebar navigation.</p>",
+    "text": "<p></p>",
+    "todo": "",
+} %}
+
+<!-- WRAPPERS -->
+<div class="docs-wrapper">
+    <div class="docs-wysiwyg">
+        <p>On this project we use quite unusual grid system. It consists of one onuter wrapper, which fills almost all the page, and inner wrapper. That inner one is separated in 12 columns. Design utilizes both those wrappers to achieve modern look.</p>
+
+        <h4>Content wrappers</h4>
+
+        <h6>.wrapper</h6>
+        <p>All the content should be inside <code>.wrapper</code> class. That aligns everything 20px from the side edges and sets common context for its contents.</p>
+
+        <pre><code>&lt;div class="<strong>wrapper</strong>">&lt;/div></code></pre>
+    </div>
+</div>
+
+<div class="wrapper docs-sample">
+    <p class="docs-sample-content" data-content="Sample content"></p>
+</div>
+
+
+<div class="docs-wrapper">
+    <div class="docs-wysiwyg">
+        <h6>.docs-wrapper-narrow</h6>
+        <p>This class' purpose is to limit its content to the grid size, minus 1 column from each side. <code>.site-footer</code> uses this.</p>
+
+        <pre><code>&lt;div class="<strong>docs-wrapper-narrow</strong>">&lt;/div></code></pre>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="docs-wrapper-narrow docs-sample">
+        <p class="docs-sample-content" data-content="Sample content"></p>
+    </div>
+</div>
+
+<hr class="docs-section-divider">
+
+{% endblock %}

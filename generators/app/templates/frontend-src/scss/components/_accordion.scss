@@ -1,0 +1,75 @@
+$accordion-default-height: 0;
+$accordion-min-height: 150px;
+$accordion-max-height: 2000px;
+$accordion-transition-duration: 1.5s;
+$accordion-transition-delay: $accordion-transition-duration;
+$accordion-transition-to-close: ease-out; // margin, cubic-bezier(0, 0, 1, 0)
+$accordion-transition-to-open: ease-in; // margin, cubic-bezier(0, 0.4, 1, 0.6)
+$accordion-transition-edge-to-close: ease-out; // height + max-height
+$accordion-transition-edge-to-open: ease-in; // height + max-height
+
+.accordion {
+    // @include no-bullets;
+    position: relative; // is important for containing our icon
+    padding-left: 0;
+}
+
+.accordion__panel-wrapper {
+    display: flex;
+    overflow: hidden;
+
+    &::after {
+        // otevrene, helper
+        content: '';
+        height: $accordion-min-height;
+        max-height: $accordion-default-height;
+        transition: height $accordion-transition-duration $accordion-transition-edge-to-close, max-height 0s $accordion-transition-delay $accordion-transition-edge-to-close; // z otevreneho do zavreneho stavu
+    }
+}
+
+.accordion__panel {
+    margin-bottom: 0;
+    max-height: 1000000px;
+    transition: margin-bottom $accordion-transition-duration $accordion-transition-to-close;
+	width: 100%;
+}
+
+// The checkbox, checked and open by default in the HTML
+.accordion__toggle {
+    position: absolute; // move the checkbox out of the way
+    cursor: pointer; // use a cursor instead of a pointer on hover
+    width: 100%; // makes the entire panel clickable
+    height: 100%; // makes the entire panel clickable
+    z-index: 1; // brings the checkbox to the top of the everything else
+    opacity: 0; // makes the checkbox invisible
+    // background: orange;
+    top: 0;
+    left: 0;
+    -webkit-appearance: none;
+
+    // When checked...
+    &:checked {
+        & ~ .accordion__panel-wrapper {
+			margin-bottom: 0px;
+
+            &::after {
+                // zavrene, helper
+                height: $accordion-default-height;
+                max-height: $accordion-min-height;
+                transition: height $accordion-transition-duration $accordion-transition-edge-to-open; // ze zavreneho do otevreneho
+            }
+
+			// ...close the panel...
+			.accordion__panel {
+				margin-bottom: ($accordion-max-height * -1);
+				// visibility: hidden;
+				max-height: $accordion-default-height;
+				transition: margin-bottom $accordion-transition-duration $accordion-transition-to-open, visibility 0s $accordion-transition-delay, max-height 0s $accordion-transition-delay;
+	        }
+        }
+    } // end :checked
+} // end .accordion__toggle
+
+.accordion__label {
+    margin-bottom: 0;
+}

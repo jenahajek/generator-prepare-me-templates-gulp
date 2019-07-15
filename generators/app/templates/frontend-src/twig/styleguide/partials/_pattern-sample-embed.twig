@@ -1,0 +1,61 @@
+<div class="docs-pattern-sample">
+    <div class="docs-pattern-sample__item is-{{ status }}">
+        <p class="docs-pattern-sample__title">
+            {{ name }}
+        </p>
+
+        <div class="docs-pattern-sample__sample">
+            {% block sampleBlock %}{% endblock %}
+        </div>
+
+        <div class="docs-pattern-sample__description docs-tabs js-docs-tabs">
+            <div class="docs-tabs__wrapper">
+                {% if design is not empty %}
+                    <button class="docs-tabs__tab is-active" data-tab="1">Design guidelines</button>
+                {% endif %}
+
+                {% if implementation is not empty %}
+                    <button class="docs-tabs__tab" data-tab="2">Implementation options</button>
+                {% endif %}
+
+                {% if dev is not empty %}
+                    <button class="docs-tabs__tab" data-tab="3">Developer notes</button>
+                {% endif %}
+            </div>
+
+            <div class="docs-tabs__content-wrapper docs-wysiwyg">
+                {% if design is not empty %}
+                    <section class="docs-tabs__content is-active" data-content="1">
+                        {{ design }}
+                    </section>
+                {% endif %}
+
+                {% if implementation.content is not empty %}
+                    <section class="docs-tabs__content" data-content="2">
+                        {{ implementation.content }}
+
+                            <pre><code class="language-twig"><xmp>{{ implementation.snippet }}</xmp></code></pre>
+
+                    </section>
+                {% endif %}
+
+                <section class="docs-tabs__content" data-content="3">
+                    {{ dev }}
+
+                    <table class="docs-browser-support">
+                        <tr>
+                            {% for item in compatibility.browserSupport %}
+                                <th>{{ item.browser }}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for item in compatibility.browserSupport %}
+                                <td class="docs-browser-support__status-{{ item.support }}">{{ item.support|default('-') }}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

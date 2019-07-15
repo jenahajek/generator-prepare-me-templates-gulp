@@ -1,0 +1,717 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Typography - Design Patterns{% endblock %}
+{% block bodyClass %}docs-page-design-patterns-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+<section>
+    {% include '../partials/_design-patterns-header.twig' with {
+        "heading": "Typography",
+        "perex": "<p>Like with colors, we should use only limited type scale in order to maintain visual contrast and vertical rhythm. It doesn't have to be too difficult, though. This is how we do it:</p>",
+        "text": "<p>We make and use semantic mixins (like <code>@mixin type-article-text</code> or <code>@mixin type-caption</code>) or mixins named alphabetically based on the size (like <code>@mixin type-a</code> for largest text or <code>@mixin type-b</code> for second largest).</p>
+        <p>All those mixins are derived from predefined type scale. It is possible to break the rule if needed, but it should be done by adding to the type scale and/or mixin, so we always now what is used in the project.</p>",
+        "todo": "",
+    } %}
+
+    <!-- COLOR PALETTE -->
+    <div class="docs-wrapper">
+        <div class="docs-wysiwyg">
+            <p>
+                TOC:
+                <ul>
+                    <li>font-families</li>
+                    <li>vertical rhythm &amp; type scale</li>
+                    <li>text styles</li>
+                    <li>text links</li>
+                    <li>wysiwyg
+                        <ul>
+                            <li>co je to?</li>
+                            <li>jak to pouzivat?</li>
+                            <li>mixiny ?</li>
+                        </ul>
+                    </li>
+                    <li>exceptions</li>
+                    <li>STYLEGUIDE</li>
+                </ul>
+            </p>
+        </div>
+
+        {# TODO: dynamicky zobrazovat pouzivty rez cislem, ktere odpovida skutecne pouzitemu rezu. V soucasne chvili se vypise napr. "heavy", ktere je ale namapovane v _config.scss #}
+
+        {% include '../partials/_type-base.twig' with {
+            'uppercase': 'AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ',
+            'lowercase': 'aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž',
+            'numbers': '0123456789',
+            'specialChars': '?!:;,.()+-–=/\'""@%&*',
+            'category': {
+                'name': 'Font families'
+            },
+            'typeFaces': [
+                {
+                    'name': 'primary',
+                    'declaration': "font-family: '...', sans-serif;",
+                    'weight': 'heavy',
+                    'style': 'normal',
+                },
+                {
+                    'name': 'primary',
+                    'declaration': "font-family: '...', sans-serif;",
+                    'weight': 'book',
+                    'style': 'normal',
+                },
+                {
+                    'name': 'secondary',
+                    'declaration': "font-family: '...', 'georgia', serif;",
+                    'weight': 'semibold',
+                    'style': 'normal',
+                },
+                {
+                    'name': 'secondary',
+                    'declaration': "font-family: '...', 'georgia', serif;",
+                    'weight': 'semibold',
+                    'style': 'italic',
+                },
+                {
+                    'name': 'secondary',
+                    'declaration': "font-family: '...', 'georgia', serif;",
+                    'weight': 'book',
+                    'style': 'normal',
+                },
+                {
+                    'name': 'secondary',
+                    'declaration': "font-family: '...', 'georgia', serif;",
+                    'weight': 'book',
+                    'style': 'italic',
+                }
+            ]
+        } %}
+
+        {% include '../partials/_type-scale.twig' with {
+            'scale': [
+                {
+                    'name': '4',
+                    'note': '',
+                },
+                {
+                    'name': '3',
+                    'note': '',
+                },
+                {
+                    'name': '2',
+                    'note': '',
+                },
+                {
+                    'name': '1',
+                    'note': '',
+                },
+                {
+                    'name': '0',
+                    'note': '',
+                },
+                {
+                    'name': '-1',
+                    'note': '',
+                },
+            ]
+        } %}
+
+        {% include '../partials/_type-styles.twig' with {
+            'categories': [
+                {
+                    'name': 'Headings',
+                    'styles': [
+                        {
+                            'name': 'type-heading',
+                            'roles': [
+                            ],
+                        },
+                        {
+                            'name': 'type-subheading',
+                            'roles': [
+                            ],
+                        },
+                    ]
+                },
+                {
+                    'name': 'Other',
+                    'styles': [
+                        {
+                            'name': 'type-perex',
+                            'roles': [
+                            ],
+                        },
+                        {
+                            'name': 'type-text',
+                            'roles': [
+                            ],
+                        },
+                        {
+                            'name': 'type-small-text',
+                            'roles': [
+                            ],
+                        },
+                    ]
+                },
+            ]
+        } %}
+
+        {% include '../partials/_pattern-sample.twig' with {
+            'heading': 'WYSIWYG styles',
+            'items': [
+                {
+                    'name': 'Headings',
+                    'status': 'on',
+                    'sample': '<h1>Heading 1</h1>
+                    <h2>Heading 2</h2>
+                    <h3>Heading 3</h3>
+                    <h4>Heading 4</h4>
+                    <h5>Heading 5</h5>
+                    <h6>Heading 6</h6>',
+                    'notes': [
+                        { 'note': "<p>Heading elements are used to divide long text or sections into semantic parts and mark their importance. Headings are used to derive content's outline.</p>"}
+                    ]
+                },
+                {
+                    'name': 'Paragraph',
+                    'status': 'on',
+                    'sample': '<p>Paragraph text Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quae numquam assumenda ipsa asperiores a non, quisquam rerum, culpa fuga dolore enim velit debitis labore id dignissimos repellendus consequatur consequuntur quidem?</p>
+                    <p>Labore, iusto dicta odio architecto perspiciatis sed voluptas consequuntur suscipit eos quo! Incidunt, beatae? Dolore sapiente tempora excepturi unde rerum optio id asperiores recusandae voluptate quas sequi, impedit explicabo eaque, odio iusto necessitatibus voluptates veritatis atque, iure facilis? Corrupti molestiae perferendis, unde iste impedit, quod et repellendus in doloribus corporis eveniet odio beatae esse ratione ducimus provident ex quas eius deleniti laborum! Commodi repellat odit, asperiores minima accusamus dolores.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The <code>&lt;p></code> element is used for body text.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Subscript text',
+                    'status': 'off',
+                    'sample': '<p>This text contains <sub>subscript</sub> text.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The &lt;sub> tag defines subscript text. Subscript text appears half a character below the normal line, and is sometimes rendered in a smaller font. Subscript text can be used for chemical formulas, like H<sub>2</sub>O.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Superscript text',
+                    'status': 'off',
+                    'sample': '<p>This text contains <sup>superscript</sup> text.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The &lt;sup> tag defines superscript text. Superscript text appears half a character above the normal line, and is sometimes rendered in a smaller font. Superscript text can be used for footnotes, like WWW<sup>[1]</sup>.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Horizontal rule',
+                    'status': 'off',
+                    'sample': '
+                    <p>Doloribus corporis eveniet odio beatae esse &hellip;</p>
+                    <hr>
+                    <p>Paragraph text Lorem ipsum dolor sit &hellip;</p>
+                    ',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The <code>&lt;hr></code> defines a thematic break in an HTML page (e.g. a shift of topic) and is used to separate content (or define a change) in an HTML page.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Inline link',
+                    'status': 'on',
+                    'sample': '<p>Paragraph text <a href="" title="" >Usual link</a> amet consectetur <a href="https://www.w3schools.com/tags/att_a_target.asp" target="_blank" rel="noreferrer noopener">external link should use rel attribute with noopener and noreferrer values</a> elit. Maxime quae numquam assumenda ipsa asperiores a non, quisquam rerum, culpa fuga dolore enim velit debitis labore id dignissimos repellendus consequatur consequuntur quidem? Labore, iusto dicta odio architecto perspiciatis sed voluptas consequuntur suscipit eos quo! Incidunt, beatae? Dolore sapiente tempora excepturi unde rerum optio id asperiores recusandae voluptate quas sequi, impedit explicabo eaque, odio iusto necessitatibus voluptates veritatis atque, iure facilis? Corrupti molestiae perferendis, unde iste impedit, quod et repellendus in doloribus corporis eveniet odio beatae esse ratione ducimus provident ex quas eius deleniti laborum! Commodi repellat odit, asperiores minima accusamus dolores.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The &lt;a> tag defines a hyperlink, which is used to link from one page to another.
+
+                            The most important attribute of the &lt;a> element is the href attribute, which indicates the link's destination.
+
+                            There are 4 states links can have:
+                            <ul>
+                                <li>unvisited</li>
+                                <li>hovered</li>
+                                <li>visited</li>
+                                <li>active</li>
+                            </ul>
+
+                            <ul>
+                                <li>href - Specifies the URL of the page the link goes to</li>
+                                <ul>
+                                    <p>attributes that cannot be present if the href attribute is not present</p>
+                                    <li>download - Specifies that the target will be downloaded when a user clicks on the hyperlink</li>
+                                    <li>hreflang - Specifies the language of the linked document</li>
+                                    <li>media - Specifies what media/device the linked document is optimized for</li>
+                                    <li>rel - Specifies the relationship between the current document and the linked document. <a href='https://www.w3schools.com/tags/att_a_rel.asp' target='_blank' rel='noopener noreferrer extarnal'>more info</a></li>
+                                    <li>target - Specifies where to open the linked document</li>
+                                    <li>type</li>
+                                </ul>
+                            </ul>
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Abbreviation',
+                    'status': 'off',
+                    'sample': '<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The &lt;abbr> tag defines an abbreviation or an acronym, like \"Mr.\", \"Dec.\", \"ASAP\", \"ATM\".
+                            Tip: An abbreviation and an acronym are both shortened versions of something else. Both are often represented as a series of letters.
+                            Marking up abbreviations can give useful information to browsers, translation systems and search-engines.
+                            <br>
+                            The global title attribute can be used in the &lt;abbr> tag to show the full version of the abbreviation/acronym when you mouse over the &lt;abbr> element.
+                        </p>
+                        "}
+                    ]
+                },
+                {
+                    'name': 'Del tag',
+                    'status': 'off',
+                    'sample': '<p>We are offering building presentational websites, web apps, <del datetime="2018-09-14T10:55:25+01:00">hardware</del> and consulting.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                            The <code>&lt;del></code> element indicates a removal from a document; this shows that the text inside it has no place in the document. You could actually physically remove the text, but you can–for the sake of transparency– leave it in and show that it does not belong. It also has an attribute to show when it was deleted.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 's element',
+                    'status': 'off',
+                    'sample': '<p>The book is <s datetime="2018-09-14T10:55:25+01:00">sold out</s> available in the shops.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;s></code> element indicates a removal from a document; this shows that the text inside it has no place in the document. You could actually physically remove the text, but you can–for the sake of transparency– leave it in and show that it does not belong. It also has an attribute to show when it was deleted.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'ins element',
+                    'status': 'off',
+                    'sample': '<p><ins datetime="2011-01-23T10:07:25+00:00"><strong>Please note:</strong> The service is no longer available.</ins></p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;ins></code> element represents text that has been inserted into the document after it has been published. Here I am inserting content as a result of the Ruby mistake earlier. Here I am inserting text to explain why the previous text was removed. Note the same attributes as used on the <code>&lt;del></code> element.</p>
+<p>This isn’t its only use, however. I frequently use the <code>&lt;ins></code> element in articles to show addenda and updates.</p>"}
+                    ]
+                },
+                {
+                    'name': 'Strong',
+                    'status': 'on',
+                    'sample': '<p>We helped our client <strong>increase market share by 5 %</strong> in just 2 years.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;strong></code> element represents strong importance; where the content is more important than its surroundings.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'small',
+                    'status': 'off',
+                    'sample': '<p><small>&copy; 2018</small></p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;small></code> element has been redefined to represent small print and side comments. It’s usage is, luckily, fairly obvious. Any time you have supporting information for a larger piece, mark it up as a \}&lt;small>.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'b element',
+                    'status': 'off',
+                    'sample': '<p><b>Left:</b> group photo of our team.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;b></code> element has been redefined in HTML5 to represent any text whose appearance is offset from its surroundings, often by means of bolding. There are occasions when you’d want bold text but without any extra importance, such as <code>&lt;strong></code> would add.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Cite',
+                    'status': 'off',
+                    'sample': '<p>I highly recommend an awesome book <a href="/"><cite>Factory Girls</cite></a> by Leslie T. Chang</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;cite></code> element is used to represent a mention of or reference to a body of work, such as a book, an article, a painting and more. It is not, according to the HTML spec, used for marking up the names of sources of quotes.</p>
+<p>So whenever you reference a name of a film or song or website or sculpture or article, mark it up with the <code>&lt;cite></code> element</p>"
+                        }
+                    ]
+                },
+                {
+                    'name': 'i element',
+                    'status': 'off',
+                    'sample': '<p>This movie? Yes, you <i>really</i> need to see this!</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The newly redefined <code>&lt;i></code> element is another slightly confusing one. The usage is any piece of text that may be spoken with a slightly different inflection but bears no extra importance. The best way to tell whether you need the <code>&lt;i></code> element or not is to say it aloud.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'q element',
+                    'status': 'off',
+                    'sample': '<p>The book is <s datetime="2018-09-14T10:55:25+01:00">sold out</s> available in the shops.</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;q></code> element is simply used to mark up inline quotations; quotes that are in the context of surrounding copy.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Emphasis',
+                    'status': 'on',
+                    'sample': '<p>I am a <em>huge</em> fan of cats!</p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+Again, the <code>&lt;em></code> element is one we should all be familiar with. It denotes stressed importance. If you read the example aloud you can see how the <code>&lt;em></code> element adds inflection on the word love with importance.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Mark element',
+                    'status': 'off',
+                    'sample': '<p>MULTISPORT ATHLETES often place great emphasis on volume and pay scant attention to intensity. That’s too bad, since <mark>it is intensity, rather than volume, that has the potential to lift fitness to the highest levels.</mark></p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;mark></code> element is a really nice new element introduced in HTML5. Its purpose is simply to highlight. You could highlight each occurrence of a search term in a search-results page or highlight specific references to code that is in a larger block.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Address',
+                    'status': 'off',
+                    'sample': '<address>
+                Written by <a href="mailto:webmaster@example.com">Jon Doe</a>.<br>
+                Visit us at:<br>
+                Example.com<br>
+                Box 564, Disneyland<br>
+                USA
+            </address>',
+                    'notes': [
+                        { 'note': "
+<p>The &lt;address> tag defines the contact information for the author/owner of a document or an article.</p>
+<p>If the &lt;address> element is inside the &lt;body> element, it represents contact information for the document.</p>
+<p>If the &lt;address> element is inside an &lt;article> element, it represents contact information for that article.</p>
+<p>The text in the &lt;address> element usually renders in italic. Most browsers will add a line break before and after the address element.</p>"}
+                    ]
+                },
+                {
+                    'name': 'code',
+                    'status': 'off',
+                    'sample': '<p>The title above is also marked with code element. It look like <code>&lt;p>&lt;code>code&lt;/code> element&lt;/p></code></p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;code></code> element is very self-explanatory, it simply represents pieces of code.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'blockquote',
+                    'status': 'on',
+                    'sample': '<blockquote cite="http://www.worldwildlife.org/who/index.html">
+                For 50 years, WWF has been protecting the future of nature. The world\'s leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+                </blockquote>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The &lt;blockquote> tag specifies a section that is quoted from another source.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'unordered list',
+                    'status': 'wip',
+                    'sample': '<h4>
+                For this recipe we\'ll need:</h4>
+                <ul>
+                    <li>Rice or quinoa</li>
+                    <li>1 large zucchini</li>
+                    <li>half an onion</li>
+                    <li>butter</li>
+                    <li>2nd level
+                        <ul>
+                            <li>bit of milk</li>
+                            <li>spice - curry</li>
+                            <li>handful of nuts</li>
+                            <li>3rd level
+                                <ul>
+                                    <li>bit of milk</li>
+                                    <li>spice - curry</li>
+                                    <li>handful of nuts</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>butter</li>
+                </ul>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;ul></code> element is for marking bullet list. It can be nested.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Ordered list',
+                    'status': 'on',
+                    'sample': '
+                    <h4>Process:</h4>
+                <ol>
+                    <li><strong>one</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.</li>
+                    <li><strong>two</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.</li>
+                    <li><strong>three</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.
+                        <ol>
+                            <li><strong>three-one</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.  </li>
+                            <li><strong>three-two</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.  </li>
+                            <li><strong>three-three</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.
+                                <ol>
+                                    <li><strong>three-three-one</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.</li>
+                                    <li><strong>three-three-two</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.</li>
+                                    <li><strong>three-three-three</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.  </li>
+                                </ol>
+                            </li>
+                            <li><strong>three-four</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat. </li>
+                        </ol>
+                    </li>
+                    <li><strong>four</strong></li>
+                    <li><strong>five</strong></li>
+                    <li><strong>six</strong></li>
+                    <li><strong>seven</strong></li>
+                    <li><strong>eight</strong></li>
+                    <li><strong>nine</strong></li>
+                    <li><strong>ten</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum fugit, numquam quis repellat.</li>
+                </ol>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;ol></code> element is for marking numbered list. It, too, can be nested.
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'definition list',
+                    'status': 'off',
+                    'sample': '<p>
+                <dl>
+                    <dt>Coffee</dt>
+                    <dd>Black hot drink</dd>
+                    <dt>Milk</dt>
+                    <dd>White cold drink</dd>
+                </dl>
+            </p>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+The <code>&lt;dl></code> tag defines a description list. It's used in conjunction with <code>&lt;dt></code> (defines terms/names) and <code>&lt;dd></code> (describes each term/name).
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Table',
+                    'status': 'on',
+                    'sample': '<table>
+                <caption>Název tabulky k problematice článku</caption>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Sloupec</th>
+                        <th>Sloupec</th>
+                        <th>Sloupec</th>
+                        <th>Sloupec na dva řádky</th>
+                        <th>Sloupec</th>
+                        <th>Sloupec</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Řádek</td>
+                        <td>0,2</td>
+                        <td>0,45</td>
+                        <td>2,8</td>
+                        <td>14,5</td>
+                        <td>32,84</td>
+                        <td>2,84</td>
+                    </tr>
+                    <tr>
+                        <td>Řádek</td>
+                        <td>0,2</td>
+                        <td>0,45</td>
+                        <td>2,8</td>
+                        <td>14,5</td>
+                        <td>32,84</td>
+                        <td>2,84</td>
+                    </tr>
+                    <tr>
+                        <td>Řádek</td>
+                        <td>0,2</td>
+                        <td>0,45</td>
+                        <td>2,8</td>
+                        <td>14,5</td>
+                        <td>32,84</td>
+                        <td>2,84</td>
+                    </tr>
+                    <tr>
+                        <td>Řádek</td>
+                        <td>0,2</td>
+                        <td>0,45</td>
+                        <td>2,8</td>
+                        <td>14,5</td>
+                        <td>32,84</td>
+                        <td>2,84</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Shrnutí dat</td>
+                        <td>Ano</td>
+                        <td>Ano</td>
+                        <td>Ne</td>
+                        <td>Ano, s výhradami</td>
+                        <td>Ne</td>
+                        <td>Ano</td>
+                    </tr>
+                </tfoot>
+            </table>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                    The <code>&lt;table></code>  tag defines an HTML table. An HTML table consists of the <code>&lt;table></code> element and one or more <code>&lt;tr></code>, <code>&lt;th></code>, and <code>&lt;td></code> elements. The <code>&lt;tr></code> element defines a table row, the <code>&lt;th></code> element defines a table header, and the <code>&lt;td></code> element defines a table cell.A more complex HTML table may also include <code>&lt;caption></code>, <code>&lt;col></code>,<code> &lt;colgroup></code>, <code>&lt;thead></code>, <code>&lt;tfoot></code>, and <code>&lt;tbody></code> elements.
+                </p>
+                <p>The &lt;caption> tag defines a table caption.</p>
+                <p>The &lt;caption> tag must be inserted immediately after the &lt;table> tag.</p>
+                "}
+                    ]
+                },
+                {
+                    'name': 'Table with caption',
+                    'status': 'on',
+                    'sample': '<figure><table>
+                <caption>Název tabulky k problematice článku</caption>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Sloupec s extrémně dlouhým názvem, který prostě musí bezpodmínečně být</th>
+                        <th>Sloupec ABC</th>
+                        <th>Sloup</th>
+                        <th>Sloupec na dva řádky</th>
+                        <th>Sloupec k testování</th>
+                        <th>Nadbytečný sloupec</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>0,2</td>
+                        <td>0,45</td>
+                        <td>2,8</td>
+                        <td>14,5</td>
+                        <td>32,84</td>
+                        <td>2,84</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0,200</td>
+                        <td>0,4500</td>
+                        <td>2,800</td>
+                        <td>14,500</td>
+                        <td>32,8400</td>
+                        <td>2,8400</td>
+                    </tr>
+                    <tr>
+                        <td>Radek Řádek</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Ing. Karel Kopřiva</td>
+                        <td>0,2</td>
+                        <td>0,45</td>
+                        <td>2,8</td>
+                        <td>14,5</td>
+                        <td>32,84</td>
+                        <td>2,84</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Shrnutí dat</td>
+                        <td>Ano</td>
+                        <td>Ano</td>
+                        <td>Ne</td>
+                        <td>Ano, s výhradami</td>
+                        <td>Ne</td>
+                        <td>Ano</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <figcaption>
+                Tabulka č.1: Problematika s názvem ABC
+            </figcaption>
+            </figure>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                    The <code>&lt;table></code>  tag defines an HTML table. An HTML table consists of the <code>&lt;table></code> element and one or more <code>&lt;tr></code>, <code>&lt;th></code>, and <code>&lt;td></code> elements. The <code>&lt;tr></code> element defines a table row, the <code>&lt;th></code> element defines a table header, and the <code>&lt;td></code> element defines a table cell.A more complex HTML table may also include <code>&lt;caption></code>, <code>&lt;col></code>,<code> &lt;colgroup></code>, <code>&lt;thead></code>, <code>&lt;tfoot></code>, and <code>&lt;tbody></code> elements.
+                </p>
+                <p>The &lt;caption> tag defines a table caption.</p>
+                <p>The &lt;caption> tag must be inserted immediately after the &lt;table> tag.</p>
+                "}
+                    ]
+                },
+                {
+                    'name': 'Image',
+                    'status': 'on',
+                    'sample': '<img src="https://source.unsplash.com/collection/190727/1000x600/" alt="alternate text for screen readers, search engine bots or situation where image doesn\'t load">',
+                    'notes': [
+                        { 'note': "
+                        <p>
+...
+                        </p>"}
+                    ]
+                },
+                {
+                    'name': 'Figure',
+                    'status': 'on',
+                    'sample': '<figure>
+                <img src="https://source.unsplash.com/random/800x600/" alt="alternate text for screen readers, search engine bots or situation where image doesn\'t load">
+                <figcaption>Fig.1 - Random image from unsplash.</figcaption>
+            </figure>',
+                    'notes': [
+                        { 'note': "
+                        <p>
+                The <code>&lt;figure></code> tag specifies self-contained content, like illustrations, diagrams, photos, code listings, etc. While the content of the <code>&lt;figure></code> element is related to the main flow, its position is independent of the main flow, and if removed it should not affect the flow of the document.
+            </p>"},
+            {
+                'note': '<p>The <code>&lt;figcaption></code> tag defines a caption for a <code>&lt;figure></code> element. The <code>&lt;figcaption></code> element can be placed as the first or last child of the <code>&lt;figure></code> element.</p>'
+            }
+                    ]
+                },
+            ]
+        } %}
+
+    </div>
+</section>
+
+{% endblock %}
+

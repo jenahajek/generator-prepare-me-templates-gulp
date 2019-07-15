@@ -1,0 +1,21 @@
+<h2 class="docs-section-subheading">{{ heading }}</h2>
+
+<div class="docs-pattern-sample">
+    {% for item in items %}
+        <div class="docs-pattern-sample__item is-{{ item.status }}">
+            <p class="docs-pattern-sample__title">
+                {{ item.name }}
+            </p>
+
+            <div class="docs-pattern-sample__sample wysiwyg">
+                {{ item.sample|raw }}
+            </div>
+
+            <div class="docs-pattern-sample__note docs-pattern-sample__description">
+                {% for note in item.notes %}
+                    {{ note.note|raw }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,121 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Icons - Design Patterns{% endblock %}
+{% block bodyClass %}docs-page-design-patterns-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+{% import _self as guide %}
+{% macro pattern(name, type) %}
+    <div class="docs-icon__wrapper {% if type == 'large'%}docs-icon__wrapper--large{% endif %}">
+        <svg class="docs-icon">
+            <use xlink:href="/svg/svgSprite.svg#{{ name }}" />
+        </svg>
+        <p class="docs-icon__caption">{{ name }}</p>
+    </div>
+{% endmacro %}
+
+<section>
+    {% include '../partials/_design-patterns-header.twig' with {
+        "heading": "Icons",
+        "perex": "<p>List of available icons.</p>",
+        "text": "<p></p>",
+        "todo": "",
+    } %}
+
+    <!-- ICONS -->
+    <div class="docs-wrapper">
+        <div class="docs-wysiwyg">
+            <!-- <p>http://carbondesignsystem.com/guidelines/iconography/usage - library/usage</p> -->
+
+<p>Ikony v tomto projektu dělíme na dvě části:
+    <ol>
+        <li>ikony</li>
+        <li>ilustrace</li>
+    </ol>
+</p>
+<h6>1. Ikony</h6>
+<p>Ikony mají transparentní pole o velikosti 24x24px, ve kterém je ikona upravená tak, aby byla vizuálně vyvážená s ostatními. Aby byla dynamicky přebarvovatelná pomocí CSS, je potřeba, aby splňovala tyto kritéria:
+    <ul>
+        <li>transparentní pole má atribut <code>fill="none" fill-rule="evenodd"</code></li>
+        <li>symbol ikony má <code>fill="#000"</code></li>
+        <li>Obalující vrstva <code>&lt;g></code> nesmí mít <code>fill="none" fill-rule="evenodd"</code></li>
+    </ul>
+</p>
+<h6>2. Ilustrace</h6>
+<p>Jsou komplexnější, mají různé rozměry a jejich přebarvování neřešíme.</p>
+
+<h5>Naming conventions</h5>
+<p>
+    <ul>
+        <li>všechno malým písmem</li>
+        <li>Pro oddělování slov používáme pouze pomlčky.</li>
+        <li>pokud má ikony víc variant, píšeme je nakonec názvu, např. <em>arrow-right</em> a <em>arrow-left</em>. Nepíšeme <s>left-arrow</s> nebo <s>right-arrow</s>.</li>
+    </ul>
+</p>
+
+<h5>Vkládání</h5>
+<p>Máme 3 hlavní možnosti, jak ikony používat:
+    <ol>
+        <li>SVG sprite</li>
+        <li>Image tag</li>
+        <li>CSS tapeta :)</li>
+        <li>CSS tapeta ve formátu Base64</li>
+    </ol>
+</p>
+
+<h6>SVG sprite</h6>
+<p>Sprite se generuje automaticky gulp taskem a to tak, že vše ze zdrojové SVG složky sloučí do jednoho souboru. K němu se pak přistupuje pomocí následujícího snippetu (kde je nutné nahradit <em>icon-name</em>, jež je stejný jako název souboru):</p>
+<pre><code>&lt;svg class="" title="">
+    &lt;use xlink:href="/svg/svgSprite.svg#icon-name" />
+&lt;/svg></code></pre>
+<p>Je možné a žádoucí přidat svg elementu třídu a pomocí ní posléze přizpůsovat velikosti, barvy, atp.</p>
+
+<h6>Image tag</h6>
+<p>Tento způsob se hodí tam, kde chceme obrázek zaindexovat vyhledávači. Dělá se takto:</p>
+<pre><code>&lt;img src="relative/path/to/image-name.svg" class="" alt=""></code></pre>
+
+<h6>CSS tapeta</h6>
+<p>V některých případech vhodnější než SVG sprity, někdy dokonce jediné možné (např. pseudo elementy u custom checkboxů atp.)</p>
+<pre><code>background-image: url('../relative/path/to/image-name.svg');</code></pre>
+
+<h6>CSS tapeta ve formátu Base64</h6>
+<p>Potřebujeme-li svg použít jako tapetu a zároveň si upravit zdrojový soubor (např. změnit barvu nebo tloušťku tahu), lze svg mportovat jako base64 a upravit přímo v kódu. Tím ale zároveň kód zduplikujeme a případné změny ve zdoji se neprojeví i na těchto tapetách.</p>
+<p>Je potřeba nahradit speciální znaky, tzn. <code><</code> za <code>%3C</code>, <code>></code> za <code>%3E</code> a <code>#</code> za <code>%23</code>.</p>
+<p>Ukázka backgorund-image property s svg v base64 formátu:</p>
+<pre><code>background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">%3Cg%3E%3Cpolygon fill="%23000" fill-rule="nonzero" points="7.457 8.443 12.047 12.84 16.637 8.443 18.047 9.797 12.047 15.557 6.047 9.797" transform="rotate(-90 12.047 12)"/%3E%3Cpolygon fill="none" fill-rule="evenodd" points="0 0 24 0 24 24 0 24" transform="matrix(1 0 0 -1 0 24)"/%3E%3C/g%3E%3C/svg%3E');
+</code></pre>
+
+
+
+<h5>Optimalizace</h5>
+<p class="docs-warning">Ikony nejsou optimalizované, jelikož minifikace rozbila logo. Dá se doladit později.</p>
+
+<h5>Přístupnost</h5>
+<p>If support for older browsers is needed, use aria-labelledby attribute to reference the <code>&lt;title></code> element using an id. The <code>&lt;title></code> element will be read by the screen reader to the user so it should describe its purpose. Make sure that you do not duplicate this id.</p>
+<pre><code>&lt;svg aria-labelledby="add">
+  &lt;title id="add">Add a new service&lt;/title>
+  &lt;use xlink:href="/carbon-icons/dist/icon--add">&lt;/use>
+&lt;/svg>
+</code></pre>
+<p>For more details on accessibility, see the following resources:</p>
+<p>"Accessible SVGs" via CSS-Tricks</p>
+<p>"5.4 The 'desc' and 'title' elements" via W3C.org</p>
+<!-- <li>http://carbondesignsystem.com/guidelines/iconography/usage - usage - jak prebarvovat a resizovat</li> -->
+        </div>
+    </div>
+
+    <div class="docs-wrapper">
+        <div class="docs-icon__container">
+            {{ guide.pattern('sample') }}
+        </div>
+    </div>
+
+    <div class="docs-wrapper">
+        <div class="docs-icon__container">
+            {{ guide.pattern('sample', 'large') }}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

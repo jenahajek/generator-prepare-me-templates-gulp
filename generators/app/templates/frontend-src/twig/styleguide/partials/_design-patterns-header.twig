@@ -1,0 +1,25 @@
+<div class="docs-wrapper">
+
+    <h2 class="docs-section-heading">
+        {{ heading }}
+        <!-- todo: css ikona plus/close -->
+    </h2>
+
+    {% if perex is not empty %}
+        <div class="docs-perex">
+            {{ perex|raw }}
+        </div>
+    {% endif %}
+
+    {% if text is not empty %}
+        <div class="docs-wysiwyg">
+            {{ text|raw }}
+        </div>
+    {% endif %}
+
+    {% if todo is not empty %}
+        <div class="docs-todo">
+            {{ todo|raw }}
+        </div>
+    {% endif %}
+</div>

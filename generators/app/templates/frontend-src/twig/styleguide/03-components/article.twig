@@ -1,0 +1,99 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% set name = 'Article' %}
+
+{% block pageTitle %}{{ name }} | Component library{% endblock %}
+{% block bodyClass %}docs-page-component-library-item{% endblock %} {# hook for docs-nav__sub styling #}
+{% block demoStyles %}{% endblock %}
+
+{% block content %}
+
+{% include "../partials/_component-documentation.twig" with {
+    "name": name,
+    "shortDescription": "Semantically correct article with various text objects",
+    "notes": "",
+    "tag": "",
+    "styleFile": "none",
+    "design": "",
+    "implementation": {
+        "content": "
+            <p>Remove excessive markup and style it.</p>
+        ",
+        "snippet": ""
+    },
+    "dev": "
+        <p>Info about <a href='http://html5doctor.com/the-article-element/'>Article element</a> on HTML5 Doctor</p>
+    ",
+    "devFeatures": [],
+    "devProblems": [
+    ],
+    "devNiceToHaves": [
+    ],
+    "browserSupport": [
+        {
+            "name": "Chrome",
+            "status": "yes",
+            "version": "73"
+        },
+        {
+            "name": "Safari",
+            "status": "yes",
+            "version": "12"
+        },
+        {
+            "name": "Firefox",
+            "status": "yes",
+            "version": "58"
+        },
+        {
+            "name": "Opera",
+            "status": "yes",
+            "version": "50"
+        },
+        {
+            "name": "Edge",
+            "status": "yes",
+            "version": "15"
+        },
+        {
+            "name": "IE",
+            "status": "yes",
+            "version": "8"
+        },
+        {
+            "name": "iOS Chrome",
+            "status": "yes",
+            "version": "iOS 8"
+        },
+        {
+            "name": "iOS Safari",
+            "status": "yes",
+            "version": "iOS 11"
+        },
+        {
+            "name": "Android",
+            "status": "yes",
+            "version": "A v4.3, Chrome"
+        },
+    ],
+    "checklist": {
+        "accessibility":            "partial",
+        "noJs":                     "noneed",
+        "progressiveEnhancement":   "noneed",
+        "hdpiSupport":              "noneed",
+        "performanceOptimization":  "noneed",
+        "responsivity":             "noneed",
+        "dataEdgeCases":            "noneed"
+    },
+    "notes": ""
+} %}
+
+<div class="docs-wrapper">
+    <div class="docs-demo docs-demo--{{ name|lower|replace({' ': '-'}) }}">
+        {% include '../../components/_article.twig' %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

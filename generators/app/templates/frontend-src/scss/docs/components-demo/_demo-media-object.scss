@@ -1,0 +1,26 @@
+.docs-demo--media-object {
+
+    .media-object__image-wrapper {
+        border-radius: 50%;
+    }
+
+
+
+
+    //-------------------------
+    // Dev view
+    //-------------------------
+    .docs-dev-view & {
+        .media-object {
+            background-color: $docs-helper-violet;
+        }
+
+        .media-object__image-wrapper {
+            background-color: $docs-helper-yellow;
+        }
+
+        .media-object__content {
+            background-color: $docs-helper-azure;
+        }
+    }
+}

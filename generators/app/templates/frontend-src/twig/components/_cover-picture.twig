@@ -1,0 +1,20 @@
+<div class="cover-picture">
+    <div class="cover-picture__bg-image-wrapper">
+        <picture class="cover-picture__bg-image">
+            {#
+                There will be 3 image sizes for different resolutions. Drupal should feed this component with images (more or less) like these:
+                - 600x800
+                - 1000x750
+                - 1680x800
+            #}
+            <source media="(max-width: 640px)"
+                    srcset="https://source.unsplash.com/600x800/?nature">
+            <source media="(max-width: 1150px)"
+                    srcset="https://source.unsplash.com/1000x750/?nature">
+            <source media="(min-width: 1151px)"
+                    srcset="https://images.unsplash.com/photo-1554193959-850ffbcad625?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1680&h=800&fit=crop&ixid=eyJhcHBfaWQiOjF9"/>
+            {# kvuli IE pouzijme fallback ten nejvetsi obrazek #}
+            <img src="https://images.unsplash.com/photo-1554193959-850ffbcad625?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1680&h=800&fit=crop&ixid=eyJhcHBfaWQiOjF9" alt="">
+        </picture>
+    </div>
+</div>

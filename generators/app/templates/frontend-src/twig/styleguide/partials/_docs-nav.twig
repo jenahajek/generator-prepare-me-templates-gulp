@@ -1,0 +1,54 @@
+<nav class="docs-nav {{ navModifier }}">
+    {% include '_docs-nav-header.twig' %}
+
+    <ul class="docs-nav__main">
+        {% for item in items %}
+            {# docs-page-{{item.navItem|lower|replace({' ': '-'}) }} is hook for css styling, needs to match with body class #}
+            <li class="docs-nav__main-item docs-page-{{item.navItem|lower|replace({' ': '-'}) }}">
+
+                {% if item.alias is not empty %}
+                    <a href="./{{ item.alias }}.html" class="docs-nav__main-link
+                    {{item.modifierClass }} {% if item.disabled is not empty
+                    %}is-disabled{% endif %}">{{item.navItem }}</a>
+                {% else %}
+                    <a href="./{{item.navItem|lower|replace({' ': '-'}) }}.html" class="docs-nav__main-link{{ item.modifierClass }} {% if item.disabled is not empty %}is-disabled{% endif %}">{{item.navItem }}</a>
+                {% endif %}
+
+
+                {% if item.submenu is not empty %}
+                    <ol class="docs-nav__sub">
+                    {% for subMenu in item.submenu %}
+                        <li class="docs-nav__sub-item {% if subMenu.disabled is empty %}is-enabled{% else %}is-disabled{% endif %}">
+                            <a href="{% if subMenu.href is not empty %}{% if item.hrefPrefix is not empty %}{{ item.hrefPrefix }}-{% endif %}{{ subMenu.href }}{% else %}{% if item.hrefPrefix is not empty %}{{ item.hrefPrefix }}-{% endif %}{{ subMenu.item|lower|replace({' ': '-'}) }}.html{% endif %}" class="docs-nav__sub-link">{{subMenu.item}}</a>
+
+
+                            {% if subMenu.submenu is not empty %}
+                                <ol class="docs-nav__subsub">
+                                {% for subSubMenu in subMenu.submenu %}
+                                    <li class="docs-nav__subsub-item {% if subSubMenu.disabled is empty %}is-enabled{% else %}is-disabled{% endif %}">
+                                        <a href="{% if subSubMenu.href is not empty %}{% if item.hrefPrefix is not empty %}{{ item.hrefPrefix }}-{% endif %}{{ subSubMenu.href }}{% else %}{% if item.hrefPrefix is not empty %}{{ item.hrefPrefix }}-{% endif %}{{ subSubMenu.item|lower|replace({' ': '-'}) }}.html{% endif %}" class="docs-nav__subsub-link">{{subSubMenu.item}}</a>
+
+                                        {% if subSubMenu.submenu is not empty %}
+                                            <ol class="docs-nav__subsubsub">
+                                            {% for item in subSubMenu.submenu %}
+                                                <li class="docs-nav__subsubsub-item {% if subSubMenu.disabled is empty %}is-enabled{% else %}is-disabled{% endif %}">
+                                                    <a href="{% if subSubMenu.href is not empty %}{% if item.hrefPrefix is not empty %}{{ item.hrefPrefix }}-{% endif %}{{ subSubMenu.href }}{% else %}{% if item.hrefPrefix is not empty %}{{ item.hrefPrefix }}-{% endif %}{{ subSubMenu.item|lower|replace({' ': '-'}) }}.html{% endif %}" class="docs-nav__subsubsub-link">{{subSubMenu.item}}</a>
+                                                </li>
+                                            {% endfor %}
+                                            </ol>
+                                        {% endif %}
+
+                                    </li>
+                                {% endfor %}
+                                </ol>
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                    </ol>
+                {% endif %}
+
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

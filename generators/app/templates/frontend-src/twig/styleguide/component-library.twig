@@ -1,0 +1,59 @@
+{# todo: initial setup - override with custom template #}
+{% extends '_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Component Library{% endblock %}
+{% block bodyClass %}docs-page-component-library{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+<div class="documentation-wrapper">
+    <div class="docs-content__intro">
+        <h1 class="docs-section-heading">Component Library</h1>
+        <p class="docs-perex">Documented collection of all building blocks for me. Learn what is available and how and why to use it.</p>
+
+        <div class="docs-wysiwyg">
+            <p>How to update library with new component:</p>
+
+            <ol>
+                <li>make a new component itself in <code>twig/components</code> folder, while honouring those recommendations:
+                    <ul>
+                        <li>pick a unique sensible descriptive name</li>
+                        <li>keep it simple, use only necessary code, so it is easier to reuse for different purposes</li>
+                        <li>
+                            Markup
+                            <ul>
+                                <li>Markup needs to be inside <code>docs-code-example__markup</code> container</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Styles
+                            <ul>
+                                <li>if external stylesheets are used, specify them in styles block</li>
+                                <li>Essential styles should be inside <code>scss/components</code> folder with the same name as the component</li>
+                                <li>Use variables with sensible names if possible, so it is easy to customize in new project. It can always be converted to plain CSS later if needed.</li>
+                                <li>Styles for making it pretty, provide better explanation etc. should be in <code>scss/components-demo</code> folder, also with identical name (for readability) and prefixed with <code>demo-</code>, do it is clear while coding. Prefix them with <code>demo-</code> class and nest the CSS selector like <code>.docs-demo--[component name] .demo-[given class]</code></li>
+                            </ul>
+                        </li>
+
+                        <li>Scripts
+                            <ul>
+                                <li>specify relevant scripts and scripts this component rely upon in the scripts block.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    make <code>styleguide/03-components/[component name].twig</code> (no underscore) template from <code>_sample.twig</code>.
+                    <ul>
+                        <li>set name</li>
+                        <li>put info and example</li>
+                    </ul>
+                </li>
+                <li>update <code>docs-nav-data.twig</code></li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

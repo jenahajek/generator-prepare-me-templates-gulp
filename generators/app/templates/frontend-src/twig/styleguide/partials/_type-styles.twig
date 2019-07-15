@@ -1,0 +1,42 @@
+<h2 class="docs-section-subheading">Type styles</h2>
+
+<table class="docs-table">
+    {% for category in categories %}
+        <caption class="docs-table__caption">{{ category.name }}</caption>
+        <tr>
+            <th class="docs-copyable">Mixin name</th>
+            <th>Role</th>
+            <th>Font size</th>
+            <th>Line height</th>
+            <th>Weight</th>
+            <th>Notes</th>
+            <th>Sample</th>
+        </tr>
+        {% for style in category.styles  %}
+            <tr class="docs-type-style__item">
+                <td class="docs-type-style__name js-copy-to-clipboard docs-tooltip docs-tooltip--down" data-clipboard-target="#clipboard-textarea">
+                    {{ style.name }}
+                </td>
+                <td class="docs-type-style__roles">
+                    <ul>
+                        {% for role in style.roles %}
+                            <li>{{ role.role }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td class="docs-type-style__font-size"></td>
+                <td class="docs-type-style__line-height"></td>
+                <td class="docs-type-style__font-weight"></td>
+                <td class="docs-type-style__notes">
+                    {% if style.notes is not empty %}
+                        {{ style.notes }}
+                    {% endif %}
+                </td>
+                <td class="docs-type-style__sample is-{{ style.name }}">
+                    Golden Ratio
+                </td>
+                {# </div> #}
+            </tr>
+            {% endfor %}
+    {% endfor %}
+</table>

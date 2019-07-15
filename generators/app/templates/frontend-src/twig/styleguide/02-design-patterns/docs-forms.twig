@@ -1,0 +1,19 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Forms - Design Patterns{% endblock %}
+{% block bodyClass %}docs-page-design-patterns-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+<section>
+    {% include '../partials/_design-patterns-header.twig' with {
+        "heading": "Forms",
+        "perex": "<p>List of standard form items.</p>",
+        "text": "",
+        "todo": "",
+    } %}
+</section>
+
+
+{% endblock %}
+

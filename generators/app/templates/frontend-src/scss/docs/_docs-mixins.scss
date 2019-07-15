@@ -1,0 +1,365 @@
+// --------------------------
+// Visually hidden
+// --------------------------
+// hide from screen, keep accessible to screen readers
+@mixin docs-vishid {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+}
+
+@mixin docs-transition {
+    transition: all 0.3s ease-in-out;
+}
+
+
+//-------------------------
+// Wysiwyg and text style mixins
+//-------------------------
+@mixin docs-snippet {
+    font-family: 'Inconsolata-g for Powerline', 'Menlo', 'Monaco', 'Courier New', monospace, monospace;
+    border: 1px dotted #aaa;
+    background: #e0e0e0;
+    padding: 1px 3px 1px;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+@mixin docs-perex {
+    max-width: $docs-reading-column;
+    font-weight: 100;
+    margin-bottom: $docs-spacing;
+    font-size: 120%;
+    line-height: 1.4;
+}
+
+@mixin docs-text-styles {
+    h1, h2, h3, h4, h5, h6,
+    p,
+    ul, ol {
+        font-family: $docs-font-family-headings;
+        padding-right: $docs-gutter;
+        margin-bottom: $docs-text-spacing;
+
+        li {
+            line-height: 1.5;
+        }
+    }
+
+    p, ul, ol {
+        font-family: $docs-font-family-text;
+        font-size: 18px;
+    }
+
+    ul {
+        margin-bottom: $docs-spacing;
+        padding-left: $docs-spacing;
+
+        > li {
+
+            ul { // 2nd level
+                margin-bottom: 0;
+
+                > li {
+                    padding-left: $docs-spacing;
+
+                    ul { // 3rd level
+                        > li {
+                            padding-left: $docs-spacing;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    ol {
+        padding-left: $docs-spacing;
+        counter-reset: my-badass-counter;
+
+        > li {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+
+            &::before {
+                // @include type-ol-counter;
+                content: counters(my-badass-counter, ".");
+                position: absolute;
+                left: 0;
+                // position: relative;
+                // left: ($spacing-l * -1);
+                top: 3px;
+                counter-increment: my-badass-counter;
+                font-weight: bold;
+                padding-right: $docs-spacing;
+                // background: pink;
+            }
+        }
+
+        ol {
+            > li {
+                padding-left: $docs-spacing;
+
+                ol {
+                    > li {
+                        padding-left: $docs-spacing;
+                    }
+                }
+            }
+        }
+    }
+
+    .docs-perex {
+        @include docs-perex;
+    }
+
+    h4 {
+        font-size: 150%;
+        font-weight: 900; // optional visual styling
+        text-transform: uppercase;
+        margin-top: ($docs-text-spacing * 2);
+        margin-bottom: ($docs-text-spacing / 2);
+    }
+
+    h5 {
+        font-weight: bold;
+        font-size: 120%;
+        text-transform: uppercase;
+        margin-top: ($docs-text-spacing * 2);
+        margin-bottom: ($docs-text-spacing / 4);
+    }
+
+    h6 {
+        font-size: 100%;
+        font-weight: bold; // optional visual styling
+        margin-top: $docs-text-spacing;
+        margin-bottom: ($docs-text-spacing / 4);
+    }
+
+    hr {
+        width: 100%;
+        display: block;
+        height: 1px;
+        border: 0;
+        background: #ccc;
+    }
+
+    code {
+        @include docs-snippet;
+
+        strong {
+            background: rgba(246, 255, 162, 0.763);
+        }
+    }
+
+    xmp,
+    pre {
+        @include docs-snippet;
+        background: rgba(200, 200, 200, 0.1);
+        margin-bottom: $docs-spacing;
+        padding: ($docs-spacing / 4);
+        white-space: pre-wrap;
+
+
+        code {
+            border: 0;
+            background: none;
+        }
+    }
+
+    mark {
+        background-color: rgba(255, 232, 130, 0.5);
+        padding: 0 3px;
+        border-radius: 2px;
+    }
+}
+
+@mixin docs-custom-ol {
+    padding-left: 0;
+    counter-reset: my-badass-counter;
+
+    li {
+        display: block;
+        position: relative;
+
+        &::before {
+            content: counters(my-badass-counter, ".");
+            line-height: 20px;
+            font-weight: bold;
+            position: absolute;
+            left: ($docs-nav-horizontal-padding);
+            top: 8px;
+            counter-increment: my-badass-counter;
+            font-weight: bold;
+            padding-right: $docs-spacing;
+            color: $docs-color-text-muted;
+        }
+    }
+
+    ol {
+        counter-reset: my-badass-counter;
+
+        > li {
+
+            &::before {
+                left: ($docs-nav-horizontal-padding * 1.5);
+            }
+
+            ol {
+                counter-reset: my-badass-counter;
+
+                > li {
+                    &::before {
+                        left: ($docs-nav-horizontal-padding * 2.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin docs-caption {
+    position: absolute;
+    right: 100%;
+    text-align: right;
+    font-weight: bold;
+    margin-right: ($docs-spacing);
+    top: 50%;
+    transform: translateY(-50%);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+@mixin table-caption {
+    @include docs-caption;
+    padding: ($docs-spacing / 4) 0;
+    display: block;
+    width: 200px;
+    top: auto;
+    transform: none;
+    color: rgba(127, 127, 127, 0.5);
+}
+
+@mixin docs-table {
+    tbody tr:last-child td {
+        padding-bottom: ($docs-spacing * 2);
+        border: none;
+    }
+
+    th,
+    td {
+        text-align: left;
+        font-size: 14px;
+        padding: ($docs-spacing / 4) ($docs-spacing / 2);
+        border-bottom: 1px solid $docs-color-border-dark;
+        vertical-align: top;
+    }
+
+    th {
+        border-top: 1px solid $docs-color-border-dark;
+        background: rgba(200, 200, 200, 0.25);
+    }
+}
+
+
+
+
+
+
+
+//-------------------------
+// Link styles
+//-------------------------
+@mixin docs-link-basic {
+    text-decoration: none;
+    color: $docs-color-primary;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+@mixin docs-point {
+    content: '';
+    display: block;
+    width: $docs-spacing;
+    height: $docs-spacing;
+    border-radius: 3px;
+    background-color: $docs-color-text-muted;
+    left: 0;
+    top: 50%;
+    margin-top: ($docs-spacing / -2);
+    position: absolute;
+}
+
+
+
+
+//-------------------------
+// Style open nav
+//-------------------------
+@mixin docs-nav-style {
+    .docs-page-index .docs-page-getting-started & {
+        @content;
+    }
+
+    .docs-page-changelog .docs-page-changelog & {
+        @content;
+    }
+
+    .docs-page-code-guidelines .docs-page-code-guidelines & {
+        @content;
+    }
+
+    .docs-page-code-guidelines-item .docs-page-code-guidelines & {
+        @content;
+    }
+
+    .docs-page-configs .docs-page-configs & {
+        @content;
+    }
+
+    .docs-page-design-patterns .docs-page-design-patterns & {
+        @content;
+    }
+
+    .docs-page-design-patterns-item .docs-page-design-patterns & {
+        @content;
+    }
+
+    .docs-page-component-library .docs-page-component-library & {
+        @content;
+    }
+
+    .docs-page-component-library-item .docs-page-component-library & {
+        @content;
+    }
+
+    .docs-page-implementation-patterns .docs-page-implementation-patterns & {
+        @content;
+    }
+
+    .docs-page-implementation-patterns-item .docs-page-implementation-patterns & {
+        @content;
+    }
+
+    .docs-page-update-checklist .docs-page-update-checklist & {
+        @content;
+    }
+
+    .has-templates .docs-page-templates & {
+        @content;
+    }
+
+    .docs-page-templates .docs-page-templates & {
+        @content;
+    }
+}

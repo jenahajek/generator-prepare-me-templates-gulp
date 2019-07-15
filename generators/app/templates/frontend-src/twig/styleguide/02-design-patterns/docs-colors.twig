@@ -1,0 +1,75 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Colors - Design Patterns{% endblock %}
+{% block bodyClass %}docs-page-design-patterns-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+
+<section>
+    {% include '../partials/_design-patterns-header.twig' with {
+        "heading": "Colors",
+        "perex": "<p>To keep the site consistent and clean, we should strive to stick with predefined set of colors as much as possible. It doesn't have to be too difficult, though. This is how we do it:<p>",
+        "text": "<p>We make and use semantic variables (like <code>$color-border</code> or <code>$color-text-muted</code>. All those variables, and that is important, are derived from predefined color palette. Each color used on this website should be documented here.</p>
+        <p><strong>Tip:</strong> toggle background color with controls in the sidebar navigation.</p>",
+        "todo": "",
+    } %}
+
+    <!-- COLOR PALETTE -->
+    <div class="docs-wrapper">
+        <div class="docs-wysiwyg">
+            <ul>
+                <li>list of variables + naming conventions</li>
+            </ul>
+        </div>
+
+
+            {% include '../partials/_design-patterns-color-palette.twig' with {
+                'palette': [
+                    {
+                        'name': 'White',
+                        'variations': [
+                            { 'variation': 'base' },
+                        ]
+                    },
+                    {
+                        'name': 'Black',
+                        'variations': [
+                            {
+                                'variation': 'light',
+                                'inverted': true
+                            },
+                            {
+                                'variation': 'base',
+                                'inverted': true
+                            },
+                            {
+                                'variation': 'dark',
+                                'inverted': true
+                            },
+                        ]
+                    },
+                ]
+            } %}
+
+            {% include '../partials/_design-patterns-color-variables.twig' with {
+                'categories': [
+                    {
+                        'name': 'Text colors',
+                        'variables': [
+                            {
+                                'item': 'color-text',
+                                'roles': [
+                                    { 'role': 'Text in dark theme' },
+                                ],
+                                'value': 'palette(white, text)'
+                            }
+                        ]
+                    },
+                ]
+            } %}
+
+    </div>
+</section>
+
+{% endblock %}

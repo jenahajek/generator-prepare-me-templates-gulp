@@ -1,0 +1,100 @@
+.docs-demo--accordion {
+
+    .accordion + .accordion {
+        margin-top: $docs-spacing;;
+    }
+
+    .demo-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        margin: 20px auto 0;
+
+        > ul {
+            flex: 1 0 32%;
+            max-width: 32%;
+            border: 1px solid $docs-color-border;
+
+            > li {
+                display: block;
+                background: $docs-helper-blue;
+                margin: 0;
+
+                p {
+                    padding: 1em;
+                }
+            }
+        }
+    }
+
+
+    .accordion__label {
+        display: block;
+        background: $docs-helper-pink;
+        margin: 0;
+        padding: 1em;
+    }
+
+    .accordion__panel li {
+        // padding: 1em;
+    }
+
+    .accordion__label,
+    .collapsible {
+        width: 100%;
+        background: $docs-helper-yellow;
+    }
+
+    .accordion__panel-wrapper,
+    .menu-item.toggler {
+        background: $docs-helper-pink;
+        cursor: pointer;
+    }
+    .menu-item.toggler:before {
+        content: '';
+        display: block;
+        border-left: 8px solid white;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        width: 0;
+        height: 0;
+        float: right;
+        transition: transform 0.3s ease-out;
+    }
+    .menu-item.toggler.toggled:before {
+        transform: rotate(90deg);
+    }
+
+
+
+//-------------------------
+// Debug
+//-------------------------
+    .docs-dev-view & {
+        .accordion__panel-wrapper {
+            position: relative;
+            &::before {
+                content: '';
+                height: $accordion-min-height;
+                transition: height $accordion-transition-duration $accordion-transition-edge-to-close,
+                            max-height 0s $accordion-transition-delay $accordion-transition-edge-to-close; // z otevreneho do zavreneho stavu
+                position: absolute;
+                width: 100%;
+                left: 0;
+                right: 0;
+                top: 0;
+                background: orange;
+                opacity: 0.5;
+            }
+
+            .accordion__toggle:checked ~ .accordion__panel-wrapper::before { // zavrene
+                height: $accordion-default-height;
+                max-height: $accordion-min-height;
+                transition: height $accordion-transition-duration $accordion-transition-edge-to-open; // ze zavreneho do otevreneho
+            }
+            // end debug
+        }
+    }
+
+}

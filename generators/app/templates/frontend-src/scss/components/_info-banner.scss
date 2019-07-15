@@ -1,0 +1,32 @@
+.info-banner {
+    // padding: $spacing-m;
+    // text-align: center;
+
+    // + .info-banner {
+    //     border-top: 1px solid $color-darker-border;
+    // }
+
+    &.info-banner--no-js {
+        // background: $color-info-bg;
+        // color: $color-info-text;
+
+        .js & {
+            display: none;
+        }
+    }
+
+    &.info-banner--old-browser {
+        // background: $color-info-bg;
+        // color: $color-info-text;
+    }
+}
+
+// .info-banner__text {
+//     @include type-small-text;
+//     margin: 0;
+//     color: $color-info-text;
+
+//     a {
+//         @include link-basic-text;
+//     }
+// }

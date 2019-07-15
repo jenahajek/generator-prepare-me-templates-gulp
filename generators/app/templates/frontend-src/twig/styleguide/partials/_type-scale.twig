@@ -1,0 +1,20 @@
+<h2 class="docs-section-subheading">Type scale</h2>
+
+<table class="docs-table">
+    <tr>
+        <th>Name</th>
+        <th>Font-size</th>
+        <th>Line-height</th>
+        <th>Notes</th>
+        <th>Sample</th>
+    </tr>
+    {% for type in scale %}
+        <tr class="docs-type-scale__item">
+            <td class="docs-type-scale__name">{{ type.name }}</td>
+            <td><p class="docs-type-scale__font-size"></p></td>
+            <td><p class="docs-type-scale__line-height"></p></td>
+            <td class="docs-type-scale__note">{{ type.note }}</td>
+            <td class="docs-type-scale__sample is-{{ type.name }}">Golden Ratio</td>
+        </tr>
+    {% endfor %}
+</table>

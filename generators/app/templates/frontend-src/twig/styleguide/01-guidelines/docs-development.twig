@@ -1,0 +1,23 @@
+{% extends '../_base-layout-documentation.twig' %}
+
+{% block pageTitle %}Code Guidelines{% endblock %}
+{% block bodyClass %}docs-page-code-guidelines-item{% endblock %} {# hook for docs-nav__sub styling #}
+
+{% block content %}
+
+<div class="docs-content__intro">
+    <h1 class="docs-section-heading">Development</h1>
+    <p>
+        <ul>
+            <li>Promyslet si komponenty (nebo celky) dopredu, nez zacnu kodovat. Najit nedomyslene veci, ujasnit si jak presne to ma fungovat. Teprve pote vymyslet nazvoslovi.</li>
+            <li>nepsat nikdy #hex kody primo, ale pres semantickou promenou, ktera je v color mape</li>
+            <li>$spacing promenne - taky mapa + semanticke promenne</li>
+            <li>spravne strkat pravidla do vlastnich css souboru.</li>
+            <li>vsechny mixiny spolu, vsechny promenne spolu; muze se stat, ze bude potreba rozsekat css na jednotlive kousky, tak to nesmi byt provazane skrz naskrz.</li>
+            <li>pravidla názvosloví - ico vs icon, suffixy/prefixy, atp.</li>
+            <li><strong>vysvětlení dostupných mixinů</strong></li>
+        </ul>
+    </p>
+</div>
+
+{% endblock %}

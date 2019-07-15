@@ -102,3 +102,19 @@ gulp.task("scripts-vendor:prod", function() {
     .pipe(uglify())
     .pipe(gulp.dest(config.paths.scripts.vendorDest));
 });
+
+
+
+// -------------------------------------
+//   scripts-docs:dev
+// -------------------------------------
+//  1 - copy vendor javascripts to dist folder
+//  keeps files separated so we can decide where and when to load given scripts
+//
+gulp.task('scripts-docs:dev', function() {
+  return gulp.src(config.paths.scripts.docs)
+      .pipe(plumber())
+      // .pipe(concat('will-be-renamed.js'))
+      // .pipe(rename(config.names.js.docs))
+      .pipe(gulp.dest(config.paths.scripts.docsDest));
+});

@@ -33,11 +33,12 @@
 //  `gulp images2webp`         - convert images to WebP format
 //  `gulp svg`                 - minify SVG and build a sprite
 //
-//  `gulp styleguide`          - compile styleguide
-//  `gulp markup`              - compile twig to html
-//
 //  `gulp favicon`             - copy favicon files
 //  `gulp fonts`               - copy fonts files
+//
+//  `gulp styleguide`          - compile styleguide
+//
+//  `gulp markup`              - compile twig to html
 //
 //  `gulp clean`               - clean dist folder
 //
@@ -64,9 +65,10 @@ require("./gulp/tasks/scripts");
 require("./gulp/tasks/modernizr");
 require("./gulp/tasks/images");
 require("./gulp/tasks/svg");
-require("./gulp/tasks/markup");
 require("./gulp/tasks/favicon");
 require("./gulp/tasks/fonts");
+require('./gulp/tasks/styleguide');
+require("./gulp/tasks/markup");
 require("./gulp/tasks/clean");
 require("./gulp/tasks/serve");
 require("./gulp/tasks/watch");
@@ -92,11 +94,14 @@ gulp.task(
       "styles:dev",
       "scripts:dev",
       "scripts-vendor:dev",
+      'scripts-docs:dev',
       "modernizr",
       "images",
       "svg",
+      'svg-docs',
       "fonts",
       "favicon",
+      'styleguide',
       "markup",
     ),
     gulp.parallel("watch", "serve"), // 2
@@ -118,12 +123,15 @@ gulp.task(
       "styles:prod",
       "scripts:prod",
       "scripts-vendor:prod",
+      'scripts-docs:dev',
       "modernizr",
       "images",
       "images2webp",
       "svg",
+      'svg-docs',
       "fonts",
       "favicon",
+      'styleguide',
       "markup",
     ),
   ),
@@ -144,12 +152,15 @@ gulp.task(
       "styles:prod",
       "scripts:prod",
       "scripts-vendor:prod",
+      'scripts-docs:dev',
       "modernizr",
       "images",
       "images2webp",
       "svg",
+      "svg-docs",
       "fonts",
       "favicon",
+      'styleguide',
       "markup",
     ),
     gulp.parallel("watch:prod", "serve"), // 2

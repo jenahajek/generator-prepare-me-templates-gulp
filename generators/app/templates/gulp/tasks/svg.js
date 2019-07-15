@@ -81,3 +81,14 @@ gulp.task("svg", function() {
       .pipe(gulp.dest(config.paths.svg.dest))
   ); // 4
 });
+
+
+
+gulp.task('svg-docs', function() {
+  return gulp.src(config.paths.svg.docs)
+      .pipe(plumber())
+      // .pipe(gulp.dest(config.paths.svg.dest)) // 2 - zatim nepotrebuju a vyhybam se riziku, ze si prepisu neco se stejnym nazvem
+      .pipe(svgstore()) // 3
+      .pipe(rename(config.names.svgSpriteDocs))
+      .pipe(gulp.dest(config.paths.svg.dest)); // 4
+});

@@ -30,6 +30,11 @@ gulp.task("watch:scripts-vendor", function() {
   );
 });
 
+gulp.task('watch:scripts-docs', function() {
+  return gulp.watch(config.paths.scripts.docs,
+      gulp.series('scripts-docs:dev'));
+});
+
 gulp.task("watch:modernizr", function() {
   return gulp.watch(
     [config.paths.styles.src, config.paths.scripts.src],
@@ -45,6 +50,16 @@ gulp.task("watch:svg", function() {
   return gulp.watch(config.paths.svg.src, gulp.series("svg"));
 });
 
+gulp.task('watch:svg-docs', function() {
+    return gulp.watch(config.paths.svg.docs,
+        gulp.series('svg-docs'));
+});
+
+gulp.task('watch:styleguide', function() {
+    return gulp.watch(config.paths.styleguide.src,
+        gulp.series('styleguide'));
+});
+
 gulp.task("watch:markup", function() {
   return gulp.watch(config.paths.markup.src, gulp.series("markup"));
 });
@@ -55,10 +70,14 @@ gulp.task(
     "watch:styles",
     "watch:scripts",
     "watch:scripts-vendor",
+    'watch:scripts-docs',
     "watch:modernizr",
     "watch:images",
     "watch:svg",
+    'watch:svg-docs',
+    'watch:styleguide',
     "watch:markup",
+    // 'watch:markup' // zatim generuji pouze sablony pres styleguide task
   ),
 );
 
@@ -90,6 +109,11 @@ gulp.task("watch:prod:svg", function() {
   return gulp.watch(config.paths.svg.src, gulp.series("svg"));
 });
 
+gulp.task('watch:prod:styleguide', function() {
+    return gulp.watch(config.paths.styleguide.src,
+        gulp.series('styleguide'));
+});
+
 gulp.task("watch:prod:markup", function() {
   return gulp.watch(config.paths.markup.src, gulp.series("markup"));
 });
@@ -102,6 +126,7 @@ gulp.task(
     "watch:prod:scripts-vendor",
     "watch:prod:images",
     "watch:prod:svg",
-    "watch:prod:markup",
+    'watch:prod:styleguide'
+    // 'watch:prod:markup' // zatim generuji pouze sablony pres styleguide task
   ),
 );

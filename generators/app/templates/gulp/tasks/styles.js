@@ -69,6 +69,19 @@ gulp.task("styles:dev", function() {
         },
       }),
     )
+    .pipe(cssGlobbing({ // 1
+        extensions       : ['.scss'],
+        autoReplaceBlock : {
+            onOff             : true,
+            globBlockBegin    : 'demoCssGlobbingBegin',
+            globBlockEnd      : 'demoCssGlobbingEnd',
+            globBlockContents : 'docs/components-demo/*.scss'
+        },
+        scssImportPath: {
+            leading_underscore: false,
+            filename_extension: false
+        }
+    }))
     .pipe(sourcemaps.init()) // 2
     .pipe(
       sass(sassOptions).on(
@@ -114,6 +127,19 @@ gulp.task("styles:prod", function() {
         },
       }),
     )
+    .pipe(cssGlobbing({ // 1
+        extensions       : ['.scss'],
+        autoReplaceBlock : {
+            onOff             : true,
+            globBlockBegin    : 'demoCssGlobbingBegin',
+            globBlockEnd      : 'demoCssGlobbingEnd',
+            globBlockContents : 'docs/components-demo/*.scss'
+        },
+        scssImportPath: {
+            leading_underscore: false,
+            filename_extension: false
+        }
+    }))
     .pipe(
       sass().on(
         "error",

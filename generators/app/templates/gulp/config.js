@@ -19,12 +19,19 @@ module.exports = {
     scripts: {
       src: src + "js/modules/**/*.js",
       vendor: src + "js/vendor/**/*.js",
+      docs: src + 'js/docs/**/*.js',
       dest: dist + "js",
       vendorDest: dist + "js/vendor",
+      docsDest : dist + 'js/docs'
     },
     images: {
       src: src + "img/**/*",
       dest: dist + "img",
+    },
+    svg: {
+      src: src + "svg/*.svg",
+      docs: src + 'svg/docs/*.svg',
+      dest: dist + "svg",
     },
     favicon: {
       src: src + "favicon/**/*",
@@ -34,9 +41,20 @@ module.exports = {
       src: src + "fonts/**/*",
       dest: dist + "fonts",
     },
-    svg: {
-      src: src + "svg/*.svg",
-      dest: dist + "svg",
+    styleguide : {
+      templates:  [ // what gets compiled
+                    src + 'twig/styleguide/00-knowledge-base/[^_]*.twig',
+                    src + 'twig/styleguide/01-guidelines/[^_]*.twig',
+                    src + 'twig/styleguide/02-design-patterns/[^_]*.twig',
+                    src + 'twig/styleguide/03-components/[^_]*.twig',
+                    src + 'twig/styleguide/03-implementation-patterns/[^_]*.twig',
+                    src + 'twig/styleguide/05-templates/[^_]*.twig',
+                    src + 'twig/styleguide/[^_]*.twig'
+                  ],
+      src:  [ // what watch is looking at
+              src + 'twig/**/*.twig',
+            ],
+      dest: dist
     },
     markup: {
       templates: [
@@ -54,7 +72,9 @@ module.exports = {
     js: {
       app: "generatedByGulp.js",
       vendor: "vendor.js",
+      docs: 'docs.js'
     },
     svgSprite: "svgSprite.svg",
+    svgSpriteDocs: 'svgSpriteDocs.svg'
   },
 };

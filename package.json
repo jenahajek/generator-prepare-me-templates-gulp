@@ -1,6 +1,6 @@
 {
-  "name": "generator-scaffold-templates-gulp",
-  "version": "0.0.4-pre",
+  "name": "generator-prepare-me-templates-gulp",
+  "version": "0.0.6-pre",
   "description": "Scaffolding for templates with Gulp.",
   "author": {
     "name": "jena.hajek",
@@ -74,7 +74,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jenahajek/generator-scaffold-templates-gulp"
+    "url": "https://github.com/jenahajek/generator-prepare-me-templates-gulp"
   },
   "license": "Apache-2.0"
 }

@@ -26,6 +26,6 @@ module.exports = class extends Generator {
   }
 
   end() {
-    console.log("\n\nEasy life. Now let's go and build templates-drupal-gulp");
+    console.log("\n\nEasy life. Now let's go and build some badass templates! ;)");
   }
 };

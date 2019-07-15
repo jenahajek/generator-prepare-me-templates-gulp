@@ -1,5 +1,5 @@
 {
-  "name": "scaffold-templates-gulp",
+  "name": "prepare-me-templates-gulp",
   "version": "1.0.0",
   "description": "",
   "main": "",
@@ -21,7 +21,6 @@
     "autoprefixer": "^7.1.1",
     "browser-sync": "^2.11.0",
     "del": "^2.2.0",
-    "generator-prepare-me": "^0.1.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",

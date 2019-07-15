@@ -1,6 +1,6 @@
 {
   "name": "generator-prepare-me-templates-gulp",
-  "version": "0.0.6-pre",
+  "version": "1.0.0",
   "description": "Scaffolding for templates with Gulp.",
   "author": {
     "name": "jena.hajek",
